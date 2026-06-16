@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【竹三】南橫八景全覽 - 荒野大自然行動指南</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js 輕量前端狀態框架 -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- FontAwesome 圖示庫 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Inter & Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    colors: {
+                        forest: {
+                            50: '#f2f7f4',
+                            100: '#e1ede6',
+                            200: '#c5dbcf',
+                            600: '#387a56',
+                            700: '#2f6648',
+                            800: '#27533b',
+                            900: '#204331',
+                            950: '#11251b',
+                        },
+                        sand: {
+                            50: '#fdfbf7',
+                            100: '#faf6ee',
+                            200: '#f1e7d4',
+                            300: '#e5d3b6',
+                            800: '#8c6d3f',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        [x-cloak] { display: none !important; }
+        body {
+            background-color: #faf6ee;
+        }
+        /* 美化滾動條 */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #faf6ee;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c5dbcf;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #387a56;
+        }
+    </style>
+</head>
+<body class="font-sans text-forest-950 pb-12 antialiased selection:bg-forest-200" x-data="tripApp()">
+
+    <header class="relative bg-gradient-to-b from-forest-950 to-forest-900 text-white overflow-hidden py-12 px-4 shadow-xl">
+        <!-- 背景樹影點綴 -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none flex justify-between items-end">
+            <i class="fa-solid fa-tree text-9xl -mb-4 -ml-4 text-forest-200"></i>
+            <i class="fa-solid fa-mountain text-9xl -mb-6 text-forest-200"></i>
+            <i class="fa-solid fa-tree text-9xl -mb-4 -mr-4 text-forest-200"></i>
+        </div>
+
+        <div class="max-w-4xl mx-auto relative z-10 text-center">
+            <div class="inline-flex items-center gap-2 bg-forest-800/80 border border-forest-600 px-4 py-1.5 rounded-full text-xs text-lime-400 font-semibold mb-4 tracking-wider">
+                <i class="fa-solid fa-campground"></i> 荒野保護協會 · 竹三親子團 會外會
+            </div>
+            <h1 class="text-3xl md:text-5xl font-black tracking-tight mb-2 drop-shadow-md text-sand-100">
+                南橫八景全覽 <span class="text-lime-400 text-2xl md:text-4xl block md:inline md:ml-2">行動智慧指南</span>
+            </h1>
+            <p class="text-sand-200 text-sm md:text-lg font-medium tracking-wide">
+                活動日期：中華民國 115 年 6 月 19 日 (五) ~ 6 月 21 日 (日)
+            </p>
+
+            <!-- 倒數計時面板 -->
+            <div class="mt-6 inline-flex items-center gap-3 bg-forest-950/70 backdrop-blur-sm px-6 py-2.5 rounded-2xl border border-forest-800 text-xs md:text-sm">
+                <span class="text-sand-300 font-bold"><i class="fa-regular fa-clock mr-1 text-lime-400"></i> 距離出發倒數：</span>
+                <span class="font-mono text-lime-400 font-black text-lg" x-text="countdownText">計算中...</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-6 space-y-6">
+
+        <!-- 快速地圖與溫泉捷徑 -->
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <a href="https://goo.gl/maps/4R4NLpizQMiN4TaB6" target="_blank" class="flex flex-col items-center justify-center p-3.5 bg-white hover:bg-forest-50 border border-forest-100 rounded-2xl shadow-sm transition group">
+                <div class="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center mb-2 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-location-dot text-lg"></i>
+                </div>
+                <span class="text-xs font-bold text-stone-700 text-center">集合：興隆公園</span>
+                <span class="text-[10px] text-stone-400 mt-0.5">地圖導航</span>
+            </a>
+            <a href="https://maps.app.goo.gl/UK63wXDqgPDjhtFL8?g_st=il" target="_blank" class="flex flex-col items-center justify-center p-3.5 bg-white hover:bg-forest-50 border border-forest-100 rounded-2xl shadow-sm transition group">
+                <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mb-2 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-square-parking text-lg"></i>
+                </div>
+                <span class="text-xs font-bold text-stone-700 text-center">嘉德公有停車場</span>
+                <span class="text-[10px] text-stone-400 mt-0.5">集合點入口</span>
+            </a>
+            <a href="http://www.pu-lao.com.tw/pages/spa.html" target="_blank" class="flex flex-col items-center justify-center p-3.5 bg-white hover:bg-forest-50 border border-forest-100 rounded-2xl shadow-sm transition group">
+                <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-2 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-hot-tub-person text-lg"></i>
+                </div>
+                <span class="text-xs font-bold text-stone-700 text-center">不老溫泉渡假村</span>
+                <span class="text-[10px] text-stone-400 mt-0.5">D2溫泉官網</span>
+            </a>
+            <button @click="document.getElementById('info-section').scrollIntoView({behavior: 'smooth'})" class="flex flex-col items-center justify-center p-3.5 bg-white hover:bg-forest-50 border border-forest-100 rounded-2xl shadow-sm transition group">
+                <div class="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mb-2 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-suitcase text-lg"></i>
+                </div>
+                <span class="text-xs font-bold text-stone-700 text-center">行前準備與備品</span>
+                <span class="text-[10px] text-stone-400 mt-0.5">滑動看清單</span>
+            </button>
+        </section>
+
+        <!-- 核心區塊：原始分組與車次房號分配圖檔對照 -->
+        <section class="bg-white rounded-3xl p-6 shadow-md border border-forest-100 relative">
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-stone-100">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-full bg-forest-600 text-white flex items-center justify-center">
+                        <i class="fa-solid fa-images text-sm"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-lg md:text-xl font-bold text-forest-900">官方分配圖檔對照</h2>
+                        <p class="text-xs text-stone-400">大巴、接駁、房號與桌次之大會官方圖檔，點選可放大檢視</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 燈箱使用提示 -->
+            <div class="bg-stone-50 border border-stone-200/60 rounded-xl p-3 mb-5 text-xs text-stone-500 flex items-center gap-2">
+                <i class="fa-solid fa-circle-info text-forest-600 shrink-0"></i>
+                <span>手機版提示：點選下方任何圖卡即可開啟「全螢幕高解析燈箱」，方便雙指捏合、放大閱讀細緻的名單文字！</span>
+            </div>
+
+            <!-- 原始圖檔 Grid 排版 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <!-- 甲乙大巴車次名單 -->
+                <div class="bg-stone-50 rounded-2xl p-4 border border-stone-200 hover:border-forest-300 transition duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold text-stone-700 flex items-center gap-1.5">
+                                <i class="fa-solid fa-bus text-rose-600"></i> 甲車/乙車 大巴人員名單
+                            </span>
+                            <span class="text-[10px] bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-bold">自選位</span>
+                        </div>
+                        <p class="text-[11px] text-stone-400 mb-3">蟻蜂（洛神花甲車）/ 鹿鷹（袋鼠乙車）車次名冊</p>
+                    </div>
+                    <div @click="openLightbox('https://i.postimg.cc/d1T1V10j/1780977457054.jpg', '甲車/乙車 大巴人員名單')" 
+                         class="cursor-zoom-in overflow-hidden rounded-xl bg-stone-200 relative aspect-[4/3] shadow-sm">
+                        <img src="https://i.postimg.cc/d1T1V10j/1780977457054.jpg" 
+                             alt="大巴車次名單" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                             onerror="this.src='https://placehold.co/600x400/387a56/ffffff?text=Bus+Roster'">
+                        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                            <span class="bg-white/90 text-stone-800 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md">
+                                <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點選放大
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第二天8人座接駁車 -->
+                <div class="bg-stone-50 rounded-2xl p-4 border border-stone-200 hover:border-forest-300 transition duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold text-stone-700 flex items-center gap-1.5">
+                                <i class="fa-solid fa-van-shuttle text-amber-600"></i> 第二天 8人座接駁編制
+                            </span>
+                            <span class="text-[10px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-bold">南橫專用</span>
+                        </div>
+                        <p class="text-[11px] text-stone-400 mb-3">走訪南橫八景必備！各小車名冊與車長分配</p>
+                    </div>
+                    <div @click="openLightbox('https://i.postimg.cc/63G3p3Qh/1780977419106.jpg', '第二天 8人座接駁車編制')" 
+                         class="cursor-zoom-in overflow-hidden rounded-xl bg-stone-200 relative aspect-[4/3] shadow-sm">
+                        <img src="https://i.postimg.cc/63G3p3Qh/1780977419106.jpg" 
+                             alt="8人座接駁" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                             onerror="this.src='https://placehold.co/600x400/387a56/ffffff?text=8+Seater+Cars'">
+                        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                            <span class="bg-white/90 text-stone-800 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md">
+                                <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點選放大
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 房間房號分配 -->
+                <div class="bg-stone-50 rounded-2xl p-4 border border-stone-200 hover:border-forest-300 transition duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold text-stone-700 flex items-center gap-1.5">
+                                <i class="fa-solid fa-hotel text-emerald-600"></i> 三天兩夜 房間房號分配
+                            </span>
+                            <span class="text-[10px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-bold">兩晚通算</span>
+                        </div>
+                        <p class="text-[11px] text-stone-400 mb-3">D1 池上牧野渡假村、D2 高雄六龜不老溫泉房號對照</p>
+                    </div>
+                    <div @click="openLightbox('https://i.postimg.cc/JnBnznhc/LINE-NOTE-260617-1.jpg', '房間房號分配表')" 
+                         class="cursor-zoom-in overflow-hidden rounded-xl bg-stone-200 relative aspect-[4/3] shadow-sm">
+                        <img src="https://i.postimg.cc/JnBnznhc/LINE-NOTE-260617-1.jpg" 
+                             alt="房間分配" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                             onerror="this.src='https://placehold.co/600x400/387a56/ffffff?text=Room+Allocation'">
+                        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                            <span class="bg-white/90 text-stone-800 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md">
+                                <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點選放大
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 用餐桌次分配 -->
+                <div class="bg-stone-50 rounded-2xl p-4 border border-stone-200 hover:border-forest-300 transition duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold text-stone-700 flex items-center gap-1.5">
+                                <i class="fa-solid fa-utensils text-indigo-600"></i> 三日合菜 吃飯桌次分配
+                            </span>
+                            <span class="text-[10px] bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-bold">美味時光</span>
+                        </div>
+                        <p class="text-[11px] text-stone-400 mb-3">三天用餐入座基準，含有茹素特殊飲食之幹部備忘</p>
+                    </div>
+                    <div @click="openLightbox('https://i.postimg.cc/SszsxsKr/1780977403977.jpg', '吃飯桌次分配表')" 
+                         class="cursor-zoom-in overflow-hidden rounded-xl bg-stone-200 relative aspect-[4/3] shadow-sm">
+                        <img src="https://i.postimg.cc/SszsxsKr/1780977403977.jpg" 
+                             alt="吃飯桌次" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                             onerror="this.src='https://placehold.co/600x400/387a56/ffffff?text=Meal+Tables'">
+                        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                            <span class="bg-white/90 text-stone-800 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md">
+                                <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點選放大
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 詳細出遊通知與公約 -->
+        <section id="info-section" class="bg-white rounded-3xl p-6 shadow-md border border-forest-100 space-y-6">
+            <h2 class="text-xl font-bold tracking-tight text-forest-900 border-b border-stone-100 pb-3 flex items-center gap-2">
+                <i class="fa-solid fa-circle-info text-forest-600"></i> 行程指南與出遊公約
+            </h2>
+
+            <div class="space-y-4">
+                <!-- 第一區：集合地點與時間 -->
+                <div class="border border-stone-100 rounded-2xl overflow-hidden shadow-sm">
+                    <button @click="infoCollapse.assembly = !infoCollapse.assembly" class="w-full bg-stone-50 hover:bg-stone-100/60 px-5 py-4 text-left font-bold text-sm text-stone-800 flex justify-between items-center transition">
+                        <span>⏰ 一、出發集合時間與詳細地點</span>
+                        <i class="fa-solid text-stone-400" :class="infoCollapse.assembly ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                    </button>
+                    <div x-show="infoCollapse.assembly" class="p-5 border-t border-stone-100 text-xs text-stone-600 space-y-2.5">
+                        <p class="font-semibold text-forest-700"><i class="fa-regular fa-clock mr-1 text-lime-600"></i> 集合時間：115 年 6 月 19 日 (五) 早上 06:50 集合，07:00 準時發車！</p>
+                        <p class="font-semibold text-stone-800"><i class="fa-solid fa-map-pin mr-1 text-red-500"></i> 集合地點：竹北市公24興隆公園自然森林遊戲場旁「竹北市嘉德公有停車場」</p>
+                        <p class="leading-relaxed">車子開到興隆公園後，一眼就可以看見公廁旁的公有停車場。請各位夥伴務必準時，讓精彩旅行順利啟航！</p>
+                        <div class="pt-2 flex flex-wrap gap-2">
+                            <a href="https://goo.gl/maps/4R4NLpizQMiN4TaB6" target="_blank" class="px-3 py-1.5 bg-red-50 text-red-700 hover:bg-red-100 rounded-xl transition font-semibold flex items-center gap-1">
+                                <i class="fa-solid fa-location-crosshairs"></i> 興隆公園導航
+                            </a>
+                            <a href="https://maps.app.goo.gl/UK63wXDqgPDjhtFL8?g_st=il" target="_blank" class="px-3 py-1.5 bg-blue-50 text-blue-700 hover:bg-blue-100 rounded-xl transition font-semibold flex items-center gap-1">
+                                <i class="fa-solid fa-square-parking"></i> 嘉德停車場入口
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第二區：出遊公約 -->
+                <div class="border border-stone-100 rounded-2xl overflow-hidden shadow-sm">
+                    <button @click="infoCollapse.rules = !infoCollapse.rules" class="w-full bg-stone-50 hover:bg-stone-100/60 px-5 py-4 text-left font-bold text-sm text-stone-800 flex justify-between items-center transition">
+                        <span>🤝 二、竹三親子團出遊公約</span>
+                        <i class="fa-solid text-stone-400" :class="infoCollapse.rules ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                    </button>
+                    <div x-show="infoCollapse.rules" class="p-5 border-t border-stone-100 text-xs text-stone-600 space-y-3">
+                        <div class="bg-forest-50 text-forest-800 font-semibold p-3 rounded-xl border border-forest-100/60">
+                            「親子團是易子而教，但仍然請大家要管好自己的小孩，不要影響到其他人喔！」
+                        </div>
+                        <p class="leading-relaxed font-semibold text-stone-700">🚌 車位分配備忘：</p>
+                        <p class="leading-relaxed">這次蟻蜂一車、鹿鷹一車剛好分明，所以免除選車程序，但上車後座位依然採<strong class="text-forest-700">自選位</strong>。</p>
+                        <ul class="list-disc list-inside space-y-1.5 pl-2">
+                            <li><strong class="text-rose-700">遊覽車右邊第一排的單人雅座：</strong>一律保留給車長乘坐。</li>
+                            <li><strong class="text-amber-800">乘車安全考量：</strong>車次皆為三排座，右邊單人位緊臨走道，請盡量不要讓小蟻、蜂一、蜂二的孩子單獨乘坐。</li>
+                        </ul>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-3">
+                            <div class="bg-amber-50/50 border border-amber-100 p-3 rounded-xl">
+                                <span class="font-bold text-amber-800 block mb-1">1. 安全第一</span>
+                                <span>車輛開動中如無特殊要事，請在座位上繫好安全帶。步道古道行進間，請聽隨行大人與領隊指示，絕不奔跑或脫離隊伍。</span>
+                            </div>
+                            <div class="bg-emerald-50/50 border border-emerald-100 p-3 rounded-xl">
+                                <span class="font-bold text-emerald-800 block mb-1">2. 展現禮貌</span>
+                                <span>出門在外，我們都穿著代表荒野保護協會及竹三親子團的團服，一言一行皆是團體形象，請互相勉勵。</span>
+                            </div>
+                            <div class="bg-sky-50/50 border border-sky-100 p-3 rounded-xl">
+                                <span class="font-bold text-sky-800 block mb-1">3. 尊重他人</span>
+                                <span>在遊覽車密閉空間中，請注意說話的音量。也要提醒孩子不要踢前面的椅背，共同維護舒適的乘車環境。</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第三區：南橫準備與互動打包清單 -->
+                <div class="border border-stone-100 rounded-2xl overflow-hidden shadow-sm">
+                    <button @click="infoCollapse.prepare = !infoCollapse.prepare" class="w-full bg-stone-50 hover:bg-stone-100/60 px-5 py-4 text-left font-bold text-sm text-stone-800 flex justify-between items-center transition">
+                        <span>🎒 三、第二天南橫公路準備與行李打包</span>
+                        <i class="fa-solid text-stone-400" :class="infoCollapse.prepare ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                    </button>
+                    <div x-show="infoCollapse.prepare" class="p-5 border-t border-stone-100 text-xs text-stone-600 space-y-4">
+                        <div class="bg-amber-50 rounded-xl p-3 text-amber-800 border border-amber-100 font-semibold flex items-center gap-2">
+                            <i class="fa-solid fa-mountain"></i>
+                            <span>提示：本次行程主打舒適放鬆，是有史以來最輕鬆、走最少路的超讚行程喔！</span>
+                        </div>
+                        
+                        <!-- 互動行李清單 -->
+                        <div>
+                            <span class="font-bold text-stone-700 block mb-2">🌿 行李打包互動清單 (打包完點選打勾)：</span>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                <template x-for="(item, index) in checklist" :key="index">
+                                    <label class="flex items-center gap-2.5 p-2.5 bg-stone-50 hover:bg-stone-100 rounded-xl cursor-pointer transition select-none">
+                                        <input type="checkbox" x-model="item.checked" class="w-4 h-4 rounded text-forest-600 focus:ring-forest-500 border-stone-300">
+                                        <span :class="item.checked ? 'line-through text-stone-400 font-normal' : 'text-stone-700 font-semibold'" x-text="item.name"></span>
+                                        <span class="text-[9px] text-stone-400 ml-auto" x-text="item.desc"></span>
+                                    </label>
+                                </template>
+                            </div>
+                            <!-- 打包進度條 -->
+                            <div class="mt-4 bg-stone-100 h-2.5 rounded-full overflow-hidden">
+                                <div class="bg-forest-600 h-full transition-all duration-300" :style="`width: ${getChecklistProgress()}%`"></div>
+                            </div>
+                            <span class="text-[10px] text-stone-400 mt-1 block text-right" x-text="`打包進度: ${getChecklistProgress()}%`"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第四區：三天餐點規劃 -->
+                <div class="border border-stone-100 rounded-2xl overflow-hidden shadow-sm">
+                    <button @click="infoCollapse.meals = !infoCollapse.meals" class="w-full bg-stone-50 hover:bg-stone-100/60 px-5 py-4 text-left font-bold text-sm text-stone-800 flex justify-between items-center transition">
+                        <span>🍱 四、三日特色美食與餐點安排</span>
+                        <i class="fa-solid text-stone-400" :class="infoCollapse.meals ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                    </button>
+                    <div x-show="infoCollapse.meals" class="p-5 border-t border-stone-100 text-xs text-stone-600 space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <!-- 第一天 -->
+                            <div class="bg-amber-50/30 border border-amber-100 p-3.5 rounded-2xl">
+                                <span class="font-bold text-amber-800 text-sm block mb-2 border-b border-amber-200/50 pb-1">📅 第一天 (6/19 五)</span>
+                                <ul class="space-y-1 text-[11px] text-stone-700">
+                                    <li>🌅 <span class="font-semibold text-stone-500">早餐：</span>自理</li>
+                                    <li>☀️ <span class="font-semibold text-stone-500">午餐：</span>在地特色合菜</li>
+                                    <li>🌙 <span class="font-semibold text-stone-500">晚餐：</span>池上木片便當 + 冰豆花</li>
+                                    <li>✨ <span class="font-semibold text-stone-500">宵夜：</span>池上米貝果 (口味隨機)</li>
+                                </ul>
+                            </div>
+                            <!-- 第二天 -->
+                            <div class="bg-forest-50/20 border border-forest-100 p-3.5 rounded-2xl">
+                                <span class="font-bold text-forest-800 text-sm block mb-2 border-b border-forest-200/30 pb-1">📅 第二天 (6/20 六)</span>
+                                <ul class="space-y-1 text-[11px] text-stone-700">
+                                    <li>🌅 <span class="font-semibold text-stone-500">早餐：</span>活力精緻餐盒</li>
+                                    <li>☀️ <span class="font-semibold text-stone-500">午餐：</span>便攜麵包手作餐盒</li>
+                                    <li>🌙 <span class="font-semibold text-stone-500">晚餐：</span>澎湃大會合菜晚宴</li>
+                                    <li>✨ <span class="font-semibold text-stone-500">宵夜：</span>現炒米粉 + 古早綠豆湯</li>
+                                </ul>
+                            </div>
+                            <!-- 第三天 -->
+                            <div class="bg-indigo-50/10 border border-indigo-100 p-3.5 rounded-2xl">
+                                <span class="font-bold text-indigo-800 text-sm block mb-2 border-b border-indigo-200/30 pb-1">📅 第三天 (6/21 日)</span>
+                                <ul class="space-y-1 text-[11px] text-stone-700">
+                                    <li>🌅 <span class="font-semibold text-stone-500">早餐：</span>飯店精緻自助百匯</li>
+                                    <li>☀️ <span class="font-semibold text-stone-500">午餐：</span>養生蓮子餐特色合菜</li>
+                                    <li>🌙 <span class="font-semibold text-stone-500">晚餐：</span>溫馨返程 (自理)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 原始分配圖高解析燈箱互動視窗 -->
+    <div x-show="lightboxOpen" 
+         x-cloak 
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 scale-95"
+         x-transition:enter-end="opacity-100 scale-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100 scale-100"
+         x-transition:leave-end="opacity-0 scale-95"
+         class="fixed inset-0 z-50 flex flex-col justify-between bg-black/95 p-4 select-none"
+         @keydown.escape.window="closeLightbox()">
+        
+        <!-- 燈箱頂部導覽列 -->
+        <div class="flex justify-between items-center text-white py-2 px-4 z-10">
+            <div>
+                <h3 class="font-bold text-sm md:text-base text-sand-200" x-text="lightboxTitle"></h3>
+                <p class="text-[10px] text-stone-400">可用雙指捏合或滾輪放大檢視</p>
+            </div>
+            <button @click="closeLightbox()" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition focus:outline-none">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- 燈箱圖片主展示區 -->
+        <div class="flex-1 flex items-center justify-center overflow-auto p-2">
+            <img :src="lightboxSrc" 
+                 :alt="lightboxTitle" 
+                 class="max-w-full max-h-[80vh] md:max-h-[85vh] object-contain rounded-lg shadow-2xl transition-transform duration-300 pointer-events-auto"
+                 @click.stop>
+        </div>
+
+        <!-- 燈箱底部提示與新視窗開啟按鈕 -->
+        <div class="text-center py-4 z-10 flex flex-col items-center gap-2">
+            <a :href="lightboxSrc" 
+               target="_blank" 
+               class="px-5 py-2 bg-forest-600 hover:bg-forest-700 text-white text-xs font-bold rounded-xl transition flex items-center gap-1.5 shadow-md">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> 在新分頁開啟原始大圖 (可長按儲存)
+            </a>
+            <button @click="closeLightbox()" class="text-xs text-stone-400 hover:text-white underline transition">
+                返回指南首頁
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function tripApp() {
+            return {
+                countdownText: '',
+                lightboxOpen: false,
+                lightboxSrc: '',
+                lightboxTitle: '',
+
+                // 手風琴資訊選單收合狀態
+                infoCollapse: {
+                    assembly: true,
+                    rules: true,
+                    prepare: false,
+                    meals: false
+                },
+
+                // 健行與出遊裝備清單
+                checklist: [
+                    { name: "雙肩後背包", desc: "便於走古道時空出雙手", checked: false },
+                    { name: "個人環保餐具與塑膠袋", desc: "實施無痕山林(LNT)將垃圾帶下山", checked: false },
+                    { name: "登山鞋 / 防滑球鞋", desc: "鞋底不可過薄，防滑抓地性佳", checked: false },
+                    { name: "長褲與長襪", desc: "防範山間草木割傷、蟲蟻叮咬", checked: false },
+                    { name: "防曬遮陽帽 & 小毛巾", desc: "遮陽防中暑，擦拭汗水更清爽", checked: false },
+                    { name: "亮綠色團服", desc: "D2當天統一著裝，拍照鮮豔識別佳", checked: false },
+                    { name: "森林護照與手冊", desc: "本次活動可以集章喔！", checked: false },
+                    { name: "個人必備藥品與防蚊液", desc: "蚊蟲叮咬與暈車防暈等自備藥品", checked: false },
+                    { name: "充足的飲水與隨身零食", desc: "放在雙肩包內，健行途中可隨時補充", checked: false },
+                    { name: "個人盥洗衛生用品", desc: "旅店響應減碳不提供一次性備品", checked: false },
+                    { name: "泳裝、泳帽", desc: "D2六龜不老溫泉戶外泡湯備用", checked: false }
+                ],
+
+                init() {
+                    // 開始倒數計時計時器 (目標出發時間：中華民國115年(2026年)6月19日早上7點整)
+                    this.startCountdown(2026, 6, 19, 7, 0);
+                },
+
+                // 燈箱控制
+                openLightbox(src, title) {
+                    this.lightboxSrc = src;
+                    this.lightboxTitle = title;
+                    this.lightboxOpen = true;
+                    // 防止背景捲動
+                    document.body.style.overflow = 'hidden';
+                },
+
+                closeLightbox() {
+                    this.lightboxOpen = false;
+                    document.body.style.overflow = '';
+                },
+
+                // 打包進度百分比
+                getChecklistProgress() {
+                    const checkedCount = this.checklist.filter(item => item.checked).length;
+                    return Math.round((checkedCount / this.checklist.length) * 100);
+                },
+
+                // 倒數計時演算法
+                startCountdown(year, month, day, hour, minute) {
+                    const targetDate = new Date(year, month - 1, day, hour, minute).getTime();
+
+                    const update = () => {
+                        const now = new Date().getTime();
+                        const distance = targetDate - now;
+
+                        if (distance < 0) {
+                            this.countdownText = "順利出發，南橫之旅愉快！";
+                            return;
+                        }
+
+                        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                        this.countdownText = `${days} 天 ${hours} 小時 ${minutes} 分 ${seconds} 秒`;
+                    };
+
+                    update();
+                    setInterval(update, 1000);
+                }
+            };
+        }
+    </script>
+</body>
+</html>

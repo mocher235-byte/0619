@@ -96,7 +96,7 @@
     <main class="max-w-4xl mx-auto px-4 py-6 space-y-6">
 
         <!-- 快速地圖、特別活動與行事曆捷徑 -->
-        <section class="grid grid-cols-2 md:grid-cols-5 gap-3">
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-3">
             <a href="https://goo.gl/maps/4R4NLpizQMiN4TaB6" target="_blank" class="flex flex-col items-center justify-center p-3.5 bg-white hover:bg-forest-50 border border-forest-100 rounded-2xl shadow-sm transition group">
                 <div class="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center mb-2 group-hover:scale-110 transition">
                     <i class="fa-solid fa-location-dot text-lg"></i>
@@ -113,14 +113,6 @@
                 <span class="text-[10px] text-amber-700 mt-0.5">特別企劃九宮格</span>
             </button>
 
-            <button @click="document.getElementById('video-showcase').scrollIntoView({behavior: 'smooth'})" class="flex flex-col items-center justify-center p-3.5 bg-white hover:bg-forest-50 border border-forest-100 rounded-2xl shadow-sm transition group">
-                <div class="w-10 h-10 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center mb-2 group-hover:scale-110 transition">
-                    <i class="fa-solid fa-video text-lg"></i>
-                </div>
-                <span class="text-xs font-bold text-stone-700 text-center">推薦出發影片</span>
-                <span class="text-[10px] text-stone-400 mt-0.5">線上暖身看影片</span>
-            </button>
-
             <!-- 點擊觸發一鍵加入行事曆面板 -->
             <button @click="calendarModalOpen = true" class="flex flex-col items-center justify-center p-3.5 bg-gradient-to-br from-lime-50 to-emerald-100/40 hover:bg-lime-100 border border-lime-200 rounded-2xl shadow-sm transition group">
                 <div class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center mb-2 group-hover:scale-110 transition shadow-md">
@@ -134,7 +126,7 @@
                 <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mb-2 group-hover:scale-110 transition">
                     <i class="fa-solid fa-suitcase text-lg"></i>
                 </div>
-                <span class="text-xs font-bold text-stone-700 text-center">行前準備與備品</span>
+                <span class="text-xs font-bold text-stone-700 text-center">行行前準備與備品</span>
                 <span class="text-[10px] text-stone-400 mt-0.5">打包互動清單</span>
             </button>
         </section>
@@ -148,21 +140,19 @@
                     </div>
                     <div>
                         <h2 class="text-lg md:text-xl font-bold text-forest-900">官方分配圖檔對照</h2>
-                        <p class="text-xs text-stone-400">大巴、接駁、房號與桌次之大會官方圖檔，點選可放大檢視</p>
+                        <p class="text-xs text-stone-400">大巴、房號與桌次之大會官方圖檔，點選可放大檢視</p>
                     </div>
                 </div>
-                
-                
             </div>
 
             <!-- 燈箱使用提示 -->
             <div class="bg-stone-50 border border-stone-200/60 rounded-xl p-3 mb-5 text-xs text-stone-500 flex items-center gap-2">
                 <i class="fa-solid fa-circle-info text-forest-600 shrink-0"></i>
-                <span>手機版提示：點選下方任何圖卡或上方「總表合圖」按鈕，即可開啟「全螢幕高解析燈箱」進行雙指捏合放大！</span>
+                <span>手機版提示：點選下方任何圖卡即可開啟「全螢幕高解析燈箱」進行雙指捏合放大！</span>
             </div>
 
-            <!-- 原始圖檔 Grid 排版 -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <!-- 原始圖檔 Grid 排版 (優化為精美等寬三欄佈局) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- 甲乙大巴車次名單 -->
                 <div class="bg-stone-50 rounded-2xl p-4 border border-stone-200 hover:border-forest-300 transition duration-300 flex flex-col justify-between group">
                     <div>
@@ -174,37 +164,12 @@
                         </div>
                         <p class="text-[11px] text-stone-400 mb-3">蟻蜂（洛神花甲車）/ 鹿鷹（袋鼠乙車）車次名冊</p>
                     </div>
-                    <div @click="openLightbox('https://i.postimg.cc/d1T1V10j/1780977457054.jpg', '甲車/乙車 大巴人員名單')" 
-                         class="cursor-zoom-in overflow-hidden rounded-xl bg-stone-200 relative aspect-[4/3] shadow-sm">
-                        <img src="https://i.postimg.cc/d1T1V10j/1780977457054.jpg" 
+                    <div @click="openLightbox('https://i.postimg.cc/3x6xCWYP/LINE-NOTE-260617-3.jpg', '甲車/乙車 大巴人員名單')" 
+                         class="cursor-zoom-in overflow-hidden rounded-xl bg-stone-200 relative aspect-[3/4] shadow-sm">
+                        <img src="https://i.postimg.cc/3x6xCWYP/LINE-NOTE-260617-3.jpg" 
                              alt="大巴車次名單" 
                              class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                             onerror="this.src='https://placehold.co/600x400/387a56/ffffff?text=Bus+Roster'">
-                        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                            <span class="bg-white/90 text-stone-800 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md">
-                                <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點選放大
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 第二天8人座接駁車 -->
-                <div class="bg-stone-50 rounded-2xl p-4 border border-stone-200 hover:border-forest-300 transition duration-300 flex flex-col justify-between group">
-                    <div>
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="text-xs font-bold text-stone-700 flex items-center gap-1.5">
-                                <i class="fa-solid fa-van-shuttle text-amber-600"></i> 第二天 8人座接駁編制
-                            </span>
-                            <span class="text-[10px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-bold">南橫專用</span>
-                        </div>
-                        <p class="text-[11px] text-stone-400 mb-3">走訪南橫八景必備！各小車名冊與車長分配</p>
-                    </div>
-                    <div @click="openLightbox('https://i.postimg.cc/63G3p3Qh/1780977419106.jpg', '第二天 8人座接駁車編制')" 
-                         class="cursor-zoom-in overflow-hidden rounded-xl bg-stone-200 relative aspect-[4/3] shadow-sm">
-                        <img src="https://i.postimg.cc/63G3p3Qh/1780977419106.jpg" 
-                             alt="8人座接駁" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                             onerror="this.src='https://placehold.co/600x400/387a56/ffffff?text=8+Seater+Cars'">
+                             onerror="this.src='https://placehold.co/600x800/387a56/ffffff?text=Bus+Roster'">
                         <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
                             <span class="bg-white/90 text-stone-800 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md">
                                 <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點選放大
@@ -224,12 +189,12 @@
                         </div>
                         <p class="text-[11px] text-stone-400 mb-3">D1 池上牧野渡假村、D2 高雄六龜不老溫泉房號對照</p>
                     </div>
-                    <div @click="openLightbox('https://i.postimg.cc/JnBnznhc/LINE-NOTE-260617-1.jpg', '房間房號分配表')" 
-                         class="cursor-zoom-in overflow-hidden rounded-xl bg-stone-200 relative aspect-[4/3] shadow-sm">
-                        <img src="https://i.postimg.cc/JnBnznhc/LINE-NOTE-260617-1.jpg" 
+                    <div @click="openLightbox('https://i.postimg.cc/cLjLM60p/LINE-NOTE-260617-2.jpg', '房間房號分配表')" 
+                         class="cursor-zoom-in overflow-hidden rounded-xl bg-stone-200 relative aspect-[3/4] shadow-sm">
+                        <img src="https://i.postimg.cc/cLjLM60p/LINE-NOTE-260617-2.jpg" 
                              alt="房間分配" 
                              class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                             onerror="this.src='https://placehold.co/600x400/387a56/ffffff?text=Room+Allocation'">
+                             onerror="this.src='https://placehold.co/600x800/387a56/ffffff?text=Room+Allocation'">
                         <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
                             <span class="bg-white/90 text-stone-800 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md">
                                 <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點選放大
@@ -249,12 +214,12 @@
                         </div>
                         <p class="text-[11px] text-stone-400 mb-3">三天用餐入座基準，含有茹素特殊飲食之幹部備忘</p>
                     </div>
-                    <div @click="openLightbox('https://i.postimg.cc/SszsxsKr/1780977403977.jpg', '吃飯桌次分配表')" 
-                         class="cursor-zoom-in overflow-hidden rounded-xl bg-stone-200 relative aspect-[4/3] shadow-sm">
-                        <img src="https://i.postimg.cc/SszsxsKr/1780977403977.jpg" 
+                    <div @click="openLightbox('https://i.postimg.cc/4xMxbnXC/LINE-NOTE-260617-4.jpg', '吃飯桌次分配表')" 
+                         class="cursor-zoom-in overflow-hidden rounded-xl bg-stone-200 relative aspect-[3/4] shadow-sm">
+                        <img src="https://i.postimg.cc/4xMxbnXC/LINE-NOTE-260617-4.jpg" 
                              alt="吃飯桌次" 
                              class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                             onerror="this.src='https://placehold.co/600x400/387a56/ffffff?text=Meal+Tables'">
+                             onerror="this.src='https://placehold.co/600x800/387a56/ffffff?text=Meal+Tables'">
                         <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
                             <span class="bg-white/90 text-stone-800 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md">
                                 <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點選放大
@@ -291,7 +256,8 @@
                         <i class="fa-solid fa-file-pdf text-base"></i>
                         <span>下載手冊紙本 (請自行列印)</span>
                     </a>
-                  
+                    
+
                 </div>
             </div>
 
@@ -408,87 +374,86 @@
             </div>
         </section>
 
-        <!-- 推薦出發影片 -->
-        <section id="video-showcase" class="bg-white rounded-3xl p-6 shadow-md border border-forest-100 space-y-4">
-            <div class="flex items-center gap-3 pb-3 border-b border-stone-100">
-                <div class="w-9 h-9 rounded-full bg-rose-600 text-white flex items-center justify-center">
-                    <i class="fa-solid fa-clapperboard text-sm"></i>
+        <!-- 第二天南橫公路景點全覽導覽 (取代原影片展示區塊) -->
+        <section id="scenic-spots" class="bg-white rounded-3xl p-6 shadow-md border border-forest-100 space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-stone-100">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-full bg-emerald-600 text-white flex items-center justify-center">
+                        <i class="fa-solid fa-mountain-sun text-sm"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-lg md:text-xl font-black text-forest-900">D2 (6/20) 南橫公路景點大走訪</h2>
+                        <p class="text-xs text-stone-400">預計早上 07:00 準時啟程，走訪南橫最精華景點！</p>
+                    </div>
                 </div>
-                <div>
-                    <h2 class="text-lg md:text-xl font-bold text-forest-900">精選行前推薦影片</h2>
-                    <p class="text-xs text-stone-400">大自然的震撼視角與南橫公路風光，點選預覽圖即可在新視窗順暢觀看！</p>
+                <!-- 已造訪景點計數器 -->
+                <div class="bg-emerald-50 border border-emerald-100 px-3.5 py-1.5 rounded-full text-xs text-emerald-800 font-bold flex items-center gap-1.5 self-start sm:self-center">
+                    <i class="fa-solid fa-map-location-dot animate-pulse"></i>
+                    <span>已踩點進度：</span>
+                    <span class="font-mono text-sm text-emerald-600 font-black" x-text="`${visitedSpots.length} / ${scenicSpots.length}`">0 / 10</span>
                 </div>
             </div>
 
-            <!-- 影片排版 Grid：雙欄等高併排 -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                
-                <!-- 影片一：看見南橫美景 -->
-                <div class="bg-stone-50 rounded-2xl p-4 border border-stone-200/80 flex flex-col justify-between group">
-                    <div class="mb-3">
-                        <div class="flex justify-between items-start mb-1">
-                            <span class="text-xs font-bold text-stone-800 flex items-center gap-1.5">
-                                <i class="fa-solid fa-film text-rose-600"></i> 看見南橫美景
-                            </span>
-                            <span class="text-[9px] bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-bold">精選空拍紀錄</span>
-                        </div>
-                        <p class="text-[11px] text-stone-400 font-medium">南橫八景全方位高山景緻，令人神往的世外桃源紀錄</p>
-                    </div>
-
-                    <!-- 精簡化高度的圖片預覽區 -->
-                    <a href="https://youtu.be/7KnnKv2FeTc?si=s59KixbEyGPs0jxj" target="_blank" class="relative block w-full aspect-video rounded-xl overflow-hidden shadow-sm bg-black group max-h-[180px]">
-                        <img src="https://i.postimg.cc/d00FZYbL/ying-mu-xie-qu-hua-mian-2026-06-17-220801.png" 
-                             alt="看見南橫美景" 
-                             class="w-full h-full object-cover group-hover:scale-102 transition duration-500"
-                             onerror="this.src='https://placehold.co/400x225/e1ede6/27533b?text=Play+Video'">
-                        
-                        <!-- 仿播放器覆蓋按鈕與遮罩 -->
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-300 flex items-center justify-center">
-                            <div class="w-12 h-12 rounded-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center shadow-lg transition transform group-hover:scale-110">
-                                <i class="fa-solid fa-play text-lg ml-0.5"></i>
-                            </div>
-                        </div>
-
-                        <!-- 點擊提示角標 -->
-                        <span class="absolute bottom-2 right-2 bg-black/70 backdrop-blur-sm text-white text-[9px] px-2 py-1 rounded font-bold">
-                            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>外部播放
-                        </span>
-                    </a>
+            <!-- 離線與點擊提示說明 -->
+            <div class="bg-emerald-50/50 border border-emerald-100 rounded-xl p-3 text-xs text-emerald-950 flex items-start gap-2.5">
+                <i class="fa-solid fa-circle-info text-emerald-600 shrink-0 mt-0.5"></i>
+                <div class="leading-relaxed font-semibold">
+                    <span>💡 實用提示：南橫高山區訊號較差，此區塊支援**離線記憶**，在路上沒網路時仍可照常勾選「已踩點」記錄！點選【官方導覽連結】可開啟各景點的詳細地理、歷史故事與生態資料。</span>
                 </div>
+            </div>
 
-                <!-- 影片二：南橫特別 Short 短片 -->
-                <div class="bg-stone-50 rounded-2xl p-4 border border-stone-200/80 flex flex-col justify-between group">
-                    <div class="mb-3">
-                        <div class="flex justify-between items-start mb-1">
-                            <span class="text-xs font-bold text-stone-800 flex items-center gap-1.5">
-                                <i class="fa-solid fa-mobile-screen-button text-blue-600"></i> 南橫特別 Short 短片
-                            </span>
-                            <span class="text-[9px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-bold">直式快報</span>
-                        </div>
-                        <p class="text-[11px] text-stone-400 font-medium">超吸睛的南橫精彩瞬間，快速感受最美公路魅力！</p>
-                    </div>
-
-                    <!-- 精簡化高度的圖片預覽區 -->
-                    <a href="https://youtube.com/shorts/P334mnw5420?si=aGt9JX3_W3nBrcvU" target="_blank" class="relative block w-full aspect-video rounded-xl overflow-hidden shadow-sm bg-black group max-h-[180px]">
-                        <img src="https://i.postimg.cc/5ttJQVh0/ying-mu-xie-qu-hua-mian-2026-06-17-220842.png" 
-                             alt="南橫特別 Short 短片" 
-                             class="w-full h-full object-cover group-hover:scale-102 transition duration-500"
-                             onerror="this.src='https://placehold.co/400x225/e1ede6/27533b?text=Play+Shorts'">
+            <!-- 10個景點 Grid 排版 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <template x-for="(spot, index) in scenicSpots" :key="index">
+                    <div :class="visitedSpots.includes(index) ? 'border-emerald-500 bg-emerald-50/20 shadow-sm' : 'border-stone-200 bg-stone-50/40'" 
+                         class="border rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 hover:shadow-md hover:border-forest-300 relative overflow-hidden group">
                         
-                        <!-- 仿播放器覆蓋按鈕與遮罩 -->
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-300 flex items-center justify-center">
-                            <div class="w-12 h-12 rounded-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center shadow-lg transition transform group-hover:scale-110">
-                                <i class="fa-solid fa-play text-lg ml-0.5"></i>
-                            </div>
+                        <!-- 背景水波紋裝飾，踩點完成後顯示 -->
+                        <div x-show="visitedSpots.includes(index)" class="absolute -right-4 -bottom-4 opacity-[0.04] text-emerald-700 pointer-events-none">
+                            <i class="fa-solid fa-circle-check text-9xl"></i>
                         </div>
 
-                        <!-- 點擊提示角標 -->
-                        <span class="absolute bottom-2 right-2 bg-black/70 backdrop-blur-sm text-white text-[9px] px-2 py-1 rounded font-bold">
-                            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>外部播放
-                        </span>
-                    </a>
-                </div>
+                        <div>
+                            <!-- 頂部標題與徽章 -->
+                            <div class="flex items-start justify-between gap-2 mb-1.5">
+                                <h3 class="font-extrabold text-sm md:text-base text-stone-800 flex items-center gap-2">
+                                    <span class="w-6 h-6 rounded-lg bg-stone-200/80 text-stone-700 flex items-center justify-center font-mono text-xs" x-text="index+1"></span>
+                                    <span x-text="spot.title"></span>
+                                </h3>
+                                
+                                <div class="flex flex-wrap gap-1">
+                                    <!-- 狀態/特色 Badge -->
+                                    <template x-for="badge in spot.badges">
+                                        <span :class="badge.type === 'alert' ? 'bg-amber-100 text-amber-800 border-amber-200' : 'bg-emerald-50 text-emerald-800 border-emerald-100'" 
+                                              class="text-[9px] font-extrabold px-2 py-0.5 rounded-full border" x-text="badge.text"></span>
+                                    </template>
+                                </div>
+                            </div>
 
+                            <p class="text-xs text-stone-500 leading-relaxed mb-4 pl-8" x-text="spot.description"></p>
+                        </div>
+
+                        <!-- 底部按鈕區 -->
+                        <div class="flex items-center justify-between gap-2 pl-8">
+                            <!-- 踩點狀態按鈕 -->
+                            <button @click="toggleSpotVisited(index)" 
+                                    :class="visitedSpots.includes(index) ? 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-inner' : 'bg-white hover:bg-stone-100 text-stone-600 border border-stone-200'"
+                                    class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 focus:outline-none">
+                                <i class="fa-solid" :class="visitedSpots.includes(index) ? 'fa-circle-check text-lime-300 animate-bounce' : 'fa-circle-plus text-stone-400'"></i>
+                                <span x-text="visitedSpots.includes(index) ? '已踩點踩印！' : '標記已踩點'"></span>
+                            </button>
+
+                            <!-- 官方導覽連結 -->
+                            <a :href="spot.url" 
+                               target="_blank" 
+                               class="text-xs font-extrabold text-forest-700 hover:text-forest-900 transition flex items-center gap-1 group-hover:underline">
+                                <span>官方導覽連結</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </template>
             </div>
         </section>
 
@@ -636,7 +601,7 @@
                             </div>
                             <!-- 第二天 -->
                             <div class="bg-forest-50/20 border border-forest-100 p-3.5 rounded-2xl">
-                                <span class="font-bold text-forest-800 text-sm block mb-2 border-b border-forest-200/30 pb-1">📅 第二天 (6/20 土)</span>
+                                <span class="font-bold text-forest-800 text-sm block mb-2 border-b border-forest-200/30 pb-1">📅 第二天 (6/20 六)</span>
                                 <ul class="space-y-1 text-[11px] text-stone-700">
                                     <li>🌅 <span class="font-semibold text-stone-500">早餐：</span>活力精緻餐盒</li>
                                     <li>☀️ <span class="font-semibold text-stone-500">午餐：</span>便攜麵包手作餐盒</li>
@@ -686,6 +651,7 @@
 
         <!-- 燈箱圖片主展示區 -->
         <div class="flex-1 flex items-center justify-center overflow-auto p-2">
+            <!-- 針對合圖 image_5204a8.jpg 或對照圖 image_520888.png，做最佳配比呈現 -->
             <img :src="lightboxSrc" 
                  :alt="lightboxTitle" 
                  class="max-w-full max-h-[80vh] md:max-h-[85vh] object-contain rounded-lg shadow-2xl transition-transform duration-300 pointer-events-auto"
@@ -695,7 +661,7 @@
 
         <!-- 燈箱底部提示與新視窗開啟按鈕 -->
         <div class="text-center py-4 z-10 flex flex-col items-center gap-2">
-            <!-- 偵測是否為本地端參考圖檔，若是則隱藏外部新分頁開啟按鈕以避免無效連結 -->
+            <!-- 偵測是否為本地端參考圖檔，若不是則隱藏外部新分頁開啟按鈕以避免無效連結 -->
             <template x-if="lightboxSrc !== 'image_520888.png' && lightboxSrc !== 'image_5204a8.jpg'">
                 <a :href="lightboxSrc" 
                    target="_blank" 
@@ -785,6 +751,9 @@
                 lightboxTitle: '',
                 calendarModalOpen: false,
 
+                // 使用 localStorage 儲存已踩點景點，即使離線也能正常運作！
+                visitedSpots: JSON.parse(localStorage.getItem('visited_spots') || '[]'),
+
                 // 手風琴資訊選單收合狀態
                 infoCollapse: {
                     assembly: true,
@@ -821,9 +790,83 @@
                     { id: 9, title: '高山奇岩怪石', emoji: '🪨', checked: false }
                 ],
 
+                // D2 115/6/20 走訪南橫公路景點大名單 (10景)
+                scenicSpots: [
+                    {
+                        title: "天龍吊橋",
+                        url: "https://www.haiduau.gov.tw/home/index.php/2019-08-20-07-55-44/349-2019-08-20-09-01-32",
+                        description: "壯觀的高山懸索吊橋，漫步其上，能遠眺峽谷深溝，霧氣繚繞宛如置身仙境。",
+                        badges: [{ text: "峽谷奇景", type: "normal" }]
+                    },
+                    {
+                        title: "霧鹿峽谷",
+                        url: "https://www.erv-nsa.gov.tw/zh-tw/attractions/detail/17",
+                        description: "大自然鬼斧神工之作，黃褐色的大理石峭壁與急湍溪水交織，氣勢磅礴。",
+                        badges: [{ text: "鬼斧神工", type: "normal" }]
+                    },
+                    {
+                        title: "六口溫泉",
+                        url: "https://www.haiduau.gov.tw/home/index.php/2019-08-20-07-55-44/346-2019-08-20-08-46-46",
+                        description: "鑿路時發現的溫泉源頭，泉質金黃透亮。可在此體驗天然的溫暖足湯泡腳體驗！",
+                        badges: [{ text: "溫泉露頭", type: "normal" }, { text: "足湯體驗", type: "normal" }]
+                    },
+                    {
+                        title: "利稻部落",
+                        url: "https://tour.taitung.gov.tw/zh-tw/attraction/details/216",
+                        description: "南橫公路上的布農族世外桃源，四周群山環抱，以種植高山黃金小米與豐富文化著稱。",
+                        badges: [{ text: "布農部落", type: "normal" }]
+                    },
+                    {
+                        title: "向陽國家公園",
+                        url: "https://www.forest.gov.tw/0000189",
+                        description: "雲霧縹緲的森林國度。此處為森林護照蓋章 Part 2 地點，目前處於休園狀態，我們在外面打卡喔！",
+                        badges: [{ text: "森林護照蓋章 2", type: "normal" }, { text: "目前休園中", type: "alert" }]
+                    },
+                    {
+                        title: "啞口 (埡口)",
+                        url: "https://tour.taitung.gov.tw/zh-tw/attraction/details/217",
+                        description: "南橫最高地標，海拔2722公尺。著名的埡口雲海與日出奇景是整條公路最令人震撼的景緻。",
+                        badges: [{ text: "至高點地標", type: "normal" }, { text: "雲海勝地", type: "normal" }]
+                    },
+                    {
+                        title: "檜谷",
+                        url: "https://www.taiwan.nps.gov.tw/home/zh-tw/attractions/21031.html",
+                        description: "終年雲霧瀰漫的檜木霧林帶，沿途古木參天，富含濃郁的高山芬多精與原始森林景觀。",
+                        badges: [{ text: "參天巨木", type: "normal" }]
+                    },
+                    {
+                        title: "天池長春祠中之關古道",
+                        url: "https://hiking.biji.co/index.php?q=news&act=info&id=17596",
+                        description: "歷史悠久的中之關越嶺古道，澄澈如鏡的愛心形高山天池，及守護開路英靈的長春祠。",
+                        badges: [{ text: "古道越嶺", type: "normal" }, { text: "澄澈天池", type: "normal" }]
+                    },
+                    {
+                        title: "新禮觀觀景台",
+                        url: "https://springhappylife.tw/a-po-chou-dou-fu/",
+                        description: "視野豁然開朗的景觀高地，可在此遠眺大關山群峰，欣賞雄偉的高山鋸齒連峰線。",
+                        badges: [{ text: "群峰遠眺", type: "normal" }]
+                    },
+                    {
+                        title: "梅山遊客中心",
+                        url: "https://www.ysnp.gov.tw/TouristCenter/d3a3b2c6-2f19-44e9-9de8-bdd9342aec44",
+                        description: "玉山國家公園在南橫公路西側的重要入口門戶，提供詳盡的動植物生態導覽與多媒體展示。",
+                        badges: [{ text: "玉山入口", type: "normal" }]
+                    }
+                ],
+
                 init() {
                     // 開始倒數計時計時器 (目標出發時間：中華民國115年(2026年)6月19日早上7點整)
                     this.startCountdown(2026, 6, 19, 7, 0);
+                },
+
+                // 景點踩點狀態紀錄 (同步儲存到 localStorage)
+                toggleSpotVisited(index) {
+                    if (this.visitedSpots.includes(index)) {
+                        this.visitedSpots = this.visitedSpots.filter(item => item !== index);
+                    } else {
+                        this.visitedSpots.push(index);
+                    }
+                    localStorage.setItem('visited_spots', JSON.stringify(this.visitedSpots));
                 },
 
                 // 燈箱控制

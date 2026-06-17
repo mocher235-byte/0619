@@ -67,7 +67,7 @@
 <body class="font-sans text-forest-950 pb-12 antialiased selection:bg-forest-200" x-data="tripApp()">
 
     <header class="relative bg-gradient-to-b from-forest-950 to-forest-900 text-white overflow-hidden py-12 px-4 shadow-xl">
-        <!-- 背景樹影點綴 -->
+        <!-- 背景樹影與星空點綴 -->
         <div class="absolute inset-0 opacity-10 pointer-events-none flex justify-between items-end">
             <i class="fa-solid fa-tree text-9xl -mb-4 -ml-4 text-forest-200"></i>
             <i class="fa-solid fa-mountain text-9xl -mb-6 text-forest-200"></i>
@@ -95,8 +95,8 @@
 
     <main class="max-w-4xl mx-auto px-4 py-6 space-y-6">
 
-        <!-- 快速地圖與溫泉捷徑 -->
-        <section class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <!-- 快速地圖、特別活動與行事曆捷徑 -->
+        <section class="grid grid-cols-2 md:grid-cols-5 gap-3">
             <a href="https://goo.gl/maps/4R4NLpizQMiN4TaB6" target="_blank" class="flex flex-col items-center justify-center p-3.5 bg-white hover:bg-forest-50 border border-forest-100 rounded-2xl shadow-sm transition group">
                 <div class="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center mb-2 group-hover:scale-110 transition">
                     <i class="fa-solid fa-location-dot text-lg"></i>
@@ -104,27 +104,243 @@
                 <span class="text-xs font-bold text-stone-700 text-center">集合：興隆公園</span>
                 <span class="text-[10px] text-stone-400 mt-0.5">地圖導航</span>
             </a>
-            <a href="https://maps.app.goo.gl/UK63wXDqgPDjhtFL8?g_st=il" target="_blank" class="flex flex-col items-center justify-center p-3.5 bg-white hover:bg-forest-50 border border-forest-100 rounded-2xl shadow-sm transition group">
+            
+            <button @click="document.getElementById('special-event').scrollIntoView({behavior: 'smooth'})" class="flex flex-col items-center justify-center p-3.5 bg-gradient-to-br from-amber-50 to-amber-100/40 hover:bg-amber-100 border border-amber-200 rounded-2xl shadow-sm transition group">
+                <div class="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center mb-2 group-hover:scale-110 transition shadow-inner">
+                    <i class="fa-solid fa-medal text-lg"></i>
+                </div>
+                <span class="text-xs font-bold text-amber-900 text-center">小小守護者挑戰</span>
+                <span class="text-[10px] text-amber-700 mt-0.5">特別企劃九宮格</span>
+            </button>
+
+            <button @click="document.getElementById('video-showcase').scrollIntoView({behavior: 'smooth'})" class="flex flex-col items-center justify-center p-3.5 bg-white hover:bg-forest-50 border border-forest-100 rounded-2xl shadow-sm transition group">
+                <div class="w-10 h-10 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center mb-2 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-video text-lg"></i>
+                </div>
+                <span class="text-xs font-bold text-stone-700 text-center">推薦出發影片</span>
+                <span class="text-[10px] text-stone-400 mt-0.5">線上暖身看影片</span>
+            </button>
+
+            <!-- 點擊觸發一鍵加入行事曆面板 -->
+            <button @click="calendarModalOpen = true" class="flex flex-col items-center justify-center p-3.5 bg-gradient-to-br from-lime-50 to-emerald-100/40 hover:bg-lime-100 border border-lime-200 rounded-2xl shadow-sm transition group">
+                <div class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center mb-2 group-hover:scale-110 transition shadow-md">
+                    <i class="fa-solid fa-calendar-plus text-lg"></i>
+                </div>
+                <span class="text-xs font-bold text-emerald-950 text-center">一鍵加入行事曆</span>
+                <span class="text-[10px] text-emerald-700 mt-0.5">匯入出發提醒</span>
+            </button>
+            
+            <button @click="document.getElementById('info-section').scrollIntoView({behavior: 'smooth'})" class="col-span-2 md:col-span-1 flex flex-col items-center justify-center p-3.5 bg-white hover:bg-forest-50 border border-forest-100 rounded-2xl shadow-sm transition group">
                 <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mb-2 group-hover:scale-110 transition">
-                    <i class="fa-solid fa-square-parking text-lg"></i>
-                </div>
-                <span class="text-xs font-bold text-stone-700 text-center">嘉德公有停車場</span>
-                <span class="text-[10px] text-stone-400 mt-0.5">集合點入口</span>
-            </a>
-            <a href="http://www.pu-lao.com.tw/pages/spa.html" target="_blank" class="flex flex-col items-center justify-center p-3.5 bg-white hover:bg-forest-50 border border-forest-100 rounded-2xl shadow-sm transition group">
-                <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-2 group-hover:scale-110 transition">
-                    <i class="fa-solid fa-hot-tub-person text-lg"></i>
-                </div>
-                <span class="text-xs font-bold text-stone-700 text-center">不老溫泉渡假村</span>
-                <span class="text-[10px] text-stone-400 mt-0.5">D2溫泉官網</span>
-            </a>
-            <button @click="document.getElementById('info-section').scrollIntoView({behavior: 'smooth'})" class="flex flex-col items-center justify-center p-3.5 bg-white hover:bg-forest-50 border border-forest-100 rounded-2xl shadow-sm transition group">
-                <div class="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mb-2 group-hover:scale-110 transition">
                     <i class="fa-solid fa-suitcase text-lg"></i>
                 </div>
                 <span class="text-xs font-bold text-stone-700 text-center">行前準備與備品</span>
-                <span class="text-[10px] text-stone-400 mt-0.5">滑動看清單</span>
+                <span class="text-[10px] text-stone-400 mt-0.5">打包互動清單</span>
             </button>
+        </section>
+
+        <!-- 特別活動：玉山公園小小守護者九宮格 -->
+        <section id="special-event" class="bg-gradient-to-br from-amber-50 to-orange-50/50 rounded-3xl p-6 shadow-md border-2 border-amber-200 relative overflow-hidden">
+            <!-- 裝飾徽章背景 -->
+            <div class="absolute top-0 right-0 opacity-5 pointer-events-none -mr-10 -mt-10">
+                <i class="fa-solid fa-award text-[16rem] text-amber-800"></i>
+            </div>
+
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-4 border-b border-amber-200">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center shadow-md shadow-amber-500/20">
+                        <i class="fa-solid fa-star-half-stroke text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] bg-amber-200 text-amber-900 px-2 py-0.5 rounded-full font-extrabold tracking-wider uppercase">特別企劃 SPECIAL EVENT</span>
+                        <h2 class="text-xl md:text-2xl font-black text-amber-950">玉山公園小小守護者挑戰</h2>
+                    </div>
+                </div>
+
+                <!-- 手冊下載按鈕 -->
+                <a href="https://drive.google.com/file/d/1Ybw1C96rZ1KtaoolibYAS_QElqJ9llfC/view?usp=sharing" 
+                   target="_blank" 
+                   class="inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white text-xs font-extrabold rounded-xl shadow-lg shadow-amber-700/20 hover:scale-102 transition duration-300">
+                    <i class="fa-solid fa-file-pdf text-base"></i>
+                    <span>點我下載小小守護者手冊 (請自行列印)</span>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <!-- 活動故事與規則說明 -->
+                <div class="md:col-span-5 space-y-4">
+                    <div class="bg-white/80 backdrop-blur-sm p-4 rounded-2xl border border-amber-100 shadow-sm">
+                        <h3 class="font-bold text-sm text-amber-900 mb-1.5 flex items-center gap-1.5">
+                            <i class="fa-solid fa-feather-pointed"></i> 傳承與留心美景的故事
+                        </h3>
+                        <p class="text-xs text-stone-700 leading-relaxed">
+                            N年前我們曾去過南橫，獲得了一份<strong>「玉山公園小小守護者」</strong>手冊。這份資料內容非常優質，值得大蜂和大蟻們在第二天行經南橫公路時，帶著孩子們放慢腳步，留心觀察周遭得天獨厚的絕美自然景觀與生態資源！
+                        </p>
+                    </div>
+
+                    <div class="bg-amber-900 text-amber-50 p-4 rounded-2xl shadow-inner space-y-2.5 text-xs">
+                        <h3 class="font-black text-sm text-amber-300 flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-exclamation"></i> 競賽與獎勵規則說明
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-1.5">
+                                <span class="bg-amber-800 text-amber-200 w-5 h-5 rounded-full flex items-center justify-center shrink-0 font-bold text-[10px]">1</span>
+                                <span><strong>小蟻</strong>完成 <strong>2條連線</strong>；<strong>小蜂</strong>則需完成 <strong>3條連線</strong>。</span>
+                            </li>
+                            <li class="flex items-start gap-1.5">
+                                <span class="bg-amber-800 text-amber-200 w-5 h-5 rounded-full flex items-center justify-center shrink-0 font-bold text-[10px]">2</span>
+                                <span>在 <strong>6/20 (六) 當天 18:00 前</strong>，將完成的實體九宮格拍照上傳至【竹三親子團群組】。</span>
+                            </li>
+                            <li class="flex items-start gap-1.5">
+                                <span class="bg-amber-800 text-amber-200 w-5 h-5 rounded-full flex items-center justify-center shrink-0 font-bold text-[10px]">3</span>
+                                <span>最快上傳且完全正確的<strong>前三名</strong>小蜂或小蟻，將獲得精心準備的<strong>神秘特別小禮物</strong>喔！🎁</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 互動式九宮格模擬觀察板 -->
+                <div class="md:col-span-7 bg-white p-5 rounded-2xl shadow-sm border border-amber-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-amber-950 flex items-center gap-1.5">
+                                <i class="fa-solid fa-wand-magic-sparkles text-amber-500"></i> 生態九宮格 · 即時觀測模擬器
+                            </span>
+                            <button @click="resetBingo()" class="text-[10px] text-amber-700 hover:text-amber-900 font-bold flex items-center gap-1 transition">
+                                <i class="fa-solid fa-rotate-right"></i> 重設
+                            </button>
+                        </div>
+                        <p class="text-[10px] text-stone-400 mb-4">
+                            出發當天在南橫公路上看到以下景觀嗎？點選卡片模擬觀測狀況，系統會即時幫你計算連線喔！
+                        </p>
+                    </div>
+
+                    <!-- 3x3 網格 -->
+                    <div class="grid grid-cols-3 gap-2 mb-4">
+                        <template x-for="(tile, index) in bingoGrid" :key="tile.id">
+                            <button @click="toggleBingo(index)" 
+                                    :class="tile.checked 
+                                            ? 'bg-amber-600 text-white border-amber-700 shadow-md transform scale-98 font-bold' 
+                                            : 'bg-stone-50 hover:bg-stone-100 text-stone-800 border-stone-200'"
+                                    class="aspect-square flex flex-col items-center justify-center text-center p-2 rounded-xl border transition duration-150 select-none focus:outline-none relative">
+                                <span class="text-xl md:text-2xl mb-1" x-text="tile.emoji"></span>
+                                <span class="text-[9px] md:text-xs leading-tight tracking-tight" x-text="tile.title"></span>
+                                <!-- 打勾角標 -->
+                                <div x-show="tile.checked" class="absolute top-1 right-1 text-[8px] bg-amber-800 text-white px-1 py-0.2 rounded">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                            </button>
+                        </template>
+                    </div>
+
+                    <!-- 即時數據反饋 -->
+                    <div class="bg-amber-50 border border-amber-200/60 rounded-xl p-3 flex items-center justify-between">
+                        <div class="text-xs">
+                            <span class="text-stone-500 font-medium">目前已觀測：</span>
+                            <span class="font-bold text-amber-900 text-sm" x-text="getCheckedCount()">0</span>
+                            <span class="text-stone-300 mx-1.5">|</span>
+                            <span class="text-stone-500 font-medium">已達成連線：</span>
+                            <span class="font-extrabold text-amber-600 text-base" x-text="`${getLinesCount()} 條線`">0 條線</span>
+                        </div>
+                        
+                        <!-- 資格徽章 -->
+                        <div class="flex gap-1.5">
+                            <span :class="getLinesCount() >= 2 ? 'bg-amber-600 text-white' : 'bg-stone-200 text-stone-400'" 
+                                  class="text-[9px] px-2 py-1 rounded font-bold transition duration-300">
+                                🐜 小蟻達標 (2條)
+                            </span>
+                            <span :class="getLinesCount() >= 3 ? 'bg-rose-600 text-white shadow-sm' : 'bg-stone-200 text-stone-400'" 
+                                  class="text-[9px] px-2 py-1 rounded font-bold transition duration-300">
+                                🐝 小蜂達標 (3條)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 推薦出發影片 (使用高品質、防崩潰的真實截圖預覽圖) -->
+        <section id="video-showcase" class="bg-white rounded-3xl p-6 shadow-md border border-forest-100 space-y-4">
+            <div class="flex items-center gap-3 pb-3 border-b border-stone-100">
+                <div class="w-9 h-9 rounded-full bg-rose-600 text-white flex items-center justify-center">
+                    <i class="fa-solid fa-clapperboard text-sm"></i>
+                </div>
+                <div>
+                    <h2 class="text-lg md:text-xl font-bold text-forest-900">精選行前推薦影片</h2>
+                    <p class="text-xs text-stone-400">大自然的震撼視角與南橫公路風光，點選預覽圖即可在新視窗順暢觀看！</p>
+                </div>
+            </div>
+
+            <!-- 影片排版 Grid：雙欄等高併排 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                
+                <!-- 影片一：看見南橫美景 -->
+                <div class="bg-stone-50 rounded-2xl p-4 border border-stone-200/80 flex flex-col justify-between group">
+                    <div class="mb-3">
+                        <div class="flex justify-between items-start mb-1">
+                            <span class="text-xs font-bold text-stone-800 flex items-center gap-1.5">
+                                <i class="fa-solid fa-film text-rose-600"></i> 看見南橫美景
+                            </span>
+                            <span class="text-[9px] bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-bold">精選空拍紀錄</span>
+                        </div>
+                        <p class="text-[11px] text-stone-400 font-medium">南橫八景全方位高山景緻，令人神往的世外桃源紀錄</p>
+                    </div>
+
+                    <!-- 精簡化高度的圖片預覽區 -->
+                    <a href="https://youtu.be/7KnnKv2FeTc?si=s59KixbEyGPs0jxj" target="_blank" class="relative block w-full aspect-video rounded-xl overflow-hidden shadow-sm bg-black group max-h-[180px]">
+                        <img src="https://i.postimg.cc/d00FZYbL/ying-mu-xie-qu-hua-mian-2026-06-17-220801.png" 
+                             alt="看見南橫美景" 
+                             class="w-full h-full object-cover group-hover:scale-102 transition duration-500"
+                             onerror="this.src='https://placehold.co/400x225/e1ede6/27533b?text=Play+Video'">
+                        
+                        <!-- 仿播放器覆蓋按鈕與遮罩 -->
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-300 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center shadow-lg transition transform group-hover:scale-110">
+                                <i class="fa-solid fa-play text-lg ml-0.5"></i>
+                            </div>
+                        </div>
+
+                        <!-- 點擊提示角標 -->
+                        <span class="absolute bottom-2 right-2 bg-black/70 backdrop-blur-sm text-white text-[9px] px-2 py-1 rounded font-bold">
+                            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>外部播放
+                        </span>
+                    </a>
+                </div>
+
+                <!-- 影片二：南橫特別 Short 短片 -->
+                <div class="bg-stone-50 rounded-2xl p-4 border border-stone-200/80 flex flex-col justify-between group">
+                    <div class="mb-3">
+                        <div class="flex justify-between items-start mb-1">
+                            <span class="text-xs font-bold text-stone-800 flex items-center gap-1.5">
+                                <i class="fa-solid fa-mobile-screen-button text-blue-600"></i> 南橫特別 Short 短片
+                            </span>
+                            <span class="text-[9px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-bold">直式快報</span>
+                        </div>
+                        <p class="text-[11px] text-stone-400 font-medium">超吸睛的南橫精彩瞬間，快速感受最美公路魅力！</p>
+                    </div>
+
+                    <!-- 精簡化高度的圖片預覽區 -->
+                    <a href="https://youtube.com/shorts/P334mnw5420?si=aGt9JX3_W3nBrcvU" target="_blank" class="relative block w-full aspect-video rounded-xl overflow-hidden shadow-sm bg-black group max-h-[180px]">
+                        <img src="https://i.postimg.cc/5ttJQVh0/ying-mu-xie-qu-hua-mian-2026-06-17-220842.png" 
+                             alt="南橫特別 Short 短片" 
+                             class="w-full h-full object-cover group-hover:scale-102 transition duration-500"
+                             onerror="this.src='https://placehold.co/400x225/e1ede6/27533b?text=Play+Shorts'">
+                        
+                        <!-- 仿播放器覆蓋按鈕與遮罩 -->
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-300 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center shadow-lg transition transform group-hover:scale-110">
+                                <i class="fa-solid fa-play text-lg ml-0.5"></i>
+                            </div>
+                        </div>
+
+                        <!-- 點擊提示角標 -->
+                        <span class="absolute bottom-2 right-2 bg-black/70 backdrop-blur-sm text-white text-[9px] px-2 py-1 rounded font-bold">
+                            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>外部播放
+                        </span>
+                    </a>
+                </div>
+
+            </div>
         </section>
 
         <!-- 核心區塊：原始分組與車次房號分配圖檔對照 -->
@@ -268,6 +484,15 @@
                         <p class="font-semibold text-forest-700"><i class="fa-regular fa-clock mr-1 text-lime-600"></i> 集合時間：115 年 6 月 19 日 (五) 早上 06:50 集合，07:00 準時發車！</p>
                         <p class="font-semibold text-stone-800"><i class="fa-solid fa-map-pin mr-1 text-red-500"></i> 集合地點：竹北市公24興隆公園自然森林遊戲場旁「竹北市嘉德公有停車場」</p>
                         <p class="leading-relaxed">車子開到興隆公園後，一眼就可以看見公廁旁的公有停車場。請各位夥伴務必準時，讓精彩旅行順利啟航！</p>
+                        
+                        <!-- 手動加入行事曆與地圖提示 -->
+                        <div class="bg-lime-50/50 border border-lime-200 p-3 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5">
+                            <span class="font-medium text-emerald-900"><i class="fa-regular fa-bell text-emerald-600 mr-1 animate-pulse"></i> 還沒記下來？點擊右側將旅行加入您的手機行事曆吧！</span>
+                            <button @click="calendarModalOpen = true" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg shadow transition text-[11px] shrink-0 flex items-center gap-1">
+                                <i class="fa-solid fa-calendar-check"></i> 加入行事曆
+                            </button>
+                        </div>
+
                         <div class="pt-2 flex flex-wrap gap-2">
                             <a href="https://goo.gl/maps/4R4NLpizQMiN4TaB6" target="_blank" class="px-3 py-1.5 bg-red-50 text-red-700 hover:bg-red-100 rounded-xl transition font-semibold flex items-center gap-1">
                                 <i class="fa-solid fa-location-crosshairs"></i> 興隆公園導航
@@ -279,34 +504,54 @@
                     </div>
                 </div>
 
-                <!-- 第二區：出遊公約 -->
+                <!-- 第二區：出遊公約與座位宣導 -->
                 <div class="border border-stone-100 rounded-2xl overflow-hidden shadow-sm">
                     <button @click="infoCollapse.rules = !infoCollapse.rules" class="w-full bg-stone-50 hover:bg-stone-100/60 px-5 py-4 text-left font-bold text-sm text-stone-800 flex justify-between items-center transition">
                         <span>🤝 二、竹三親子團出遊公約</span>
                         <i class="fa-solid text-stone-400" :class="infoCollapse.rules ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
                     </button>
-                    <div x-show="infoCollapse.rules" class="p-5 border-t border-stone-100 text-xs text-stone-600 space-y-3">
+                    <div x-show="infoCollapse.rules" class="p-5 border-t border-stone-100 text-xs text-stone-600 space-y-4">
                         <div class="bg-forest-50 text-forest-800 font-semibold p-3 rounded-xl border border-forest-100/60">
                             「親子團是易子而教，但仍然請大家要管好自己的小孩，不要影響到其他人喔！」
                         </div>
-                        <p class="leading-relaxed font-semibold text-stone-700">🚌 車位分配備忘：</p>
-                        <p class="leading-relaxed">這次蟻蜂一車、鹿鷹一車剛好分明，所以免除選車程序，但上車後座位依然採<strong class="text-forest-700">自選位</strong>。</p>
-                        <ul class="list-disc list-inside space-y-1.5 pl-2">
-                            <li><strong class="text-rose-700">遊覽車右邊第一排的單人雅座：</strong>一律保留給車長乘坐。</li>
-                            <li><strong class="text-amber-800">乘車安全考量：</strong>車次皆為三排座，右邊單人位緊臨走道，請盡量不要讓小蟻、蜂一、蜂二的孩子單獨乘坐。</li>
-                        </ul>
+                        
+                        <div>
+                            <p class="leading-relaxed font-bold text-stone-800 text-sm mb-1.5">🚌 遊覽車座位分配備忘：</p>
+                            <p class="leading-relaxed mb-2">這次蟻蜂一車、鹿鷹一車剛好分明，所以免除選車程序，但上車後座位依然採<strong class="text-forest-700">自選位</strong>，並請大家幫忙配合以下幾點：</p>
+                            <ul class="list-disc list-inside space-y-1.5 pl-2 mb-3">
+                                <li><strong class="text-rose-700">遊覽車右邊第一排的單人雅座：</strong>一律保留給車長乘坐。</li>
+                                <li><strong class="text-amber-800">乘車安全考量：</strong>車次皆為三排座，右邊單人位緊臨走道，請盡量不要讓小蟻、蜂一、蜂二的孩子單獨乘坐。</li>
+                            </ul>
+                        </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-3">
-                            <div class="bg-amber-50/50 border border-amber-100 p-3 rounded-xl">
-                                <span class="font-bold text-amber-800 block mb-1">1. 安全第一</span>
+                        <!-- 乙車特別協調說明牌卡 (新增) -->
+                        <div class="bg-amber-50/70 border-l-4 border-amber-500 p-4 rounded-r-2xl space-y-2 shadow-inner">
+                            <span class="font-black text-amber-900 flex items-center gap-1.5 text-xs">
+                                <i class="fa-solid fa-triangle-exclamation text-amber-600 text-sm animate-bounce"></i> 🦘 袋鼠乙車座位特別體恤宣導 😆
+                            </span>
+                            <div class="leading-relaxed text-stone-700 space-y-1.5 font-medium">
+                                <p>由於乙車的<strong>小小蟻、小蟻</strong>人數較多，再加上有三組<strong>「大家庭」</strong>配置 😆 想懇請乙車夥伴們協助：</p>
+                                <ul class="list-disc list-inside pl-1 space-y-1 text-stone-800 font-bold">
+                                    <li>請大人們優先選坐 <span class="bg-amber-200 px-1 py-0.5 rounded text-amber-950">單人座</span>，將兩人座的位置盡量留給孩子們。</li>
+                                    <li>若最後出現「只剩小孩＋單人座」的情況，車長可能就要出面強制（？）協調換位啦～</li>
+                                </ul>
+                                <p class="pt-1 text-forest-800 font-black flex items-center gap-1">
+                                    <i class="fa-solid fa-heart text-red-500 text-xs"></i> 感謝大家的體諒與互相支援，一起讓孩子們都能順利坐好坐滿 ❤️
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2">
+                            <div class="bg-stone-50 border border-stone-200 p-3 rounded-xl">
+                                <span class="font-bold text-forest-800 block mb-1">1. 安全第一</span>
                                 <span>車輛開動中如無特殊要事，請在座位上繫好安全帶。步道古道行進間，請聽隨行大人與領隊指示，絕不奔跑或脫離隊伍。</span>
                             </div>
-                            <div class="bg-emerald-50/50 border border-emerald-100 p-3 rounded-xl">
-                                <span class="font-bold text-emerald-800 block mb-1">2. 展現禮貌</span>
+                            <div class="bg-stone-50 border border-stone-200 p-3 rounded-xl">
+                                <span class="font-bold text-forest-800 block mb-1">2. 展現禮貌</span>
                                 <span>出門在外，我們都穿著代表荒野保護協會及竹三親子團的團服，一言一行皆是團體形象，請互相勉勵。</span>
                             </div>
-                            <div class="bg-sky-50/50 border border-sky-100 p-3 rounded-xl">
-                                <span class="font-bold text-sky-800 block mb-1">3. 尊重他人</span>
+                            <div class="bg-stone-50 border border-stone-200 p-3 rounded-xl">
+                                <span class="font-bold text-forest-800 block mb-1">3. 尊重他人</span>
                                 <span>在遊覽車密閉空間中，請注意說話的音量。也要提醒孩子不要踢前面的椅背，共同維護舒適的乘車環境。</span>
                             </div>
                         </div>
@@ -435,6 +680,73 @@
         </div>
     </div>
 
+    <!-- 行事曆一鍵匯入彈出視窗 -->
+    <div x-show="calendarModalOpen" 
+         x-cloak 
+         class="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm"
+         @click.self="calendarModalOpen = false"
+         @keydown.escape.window="calendarModalOpen = false">
+        
+        <div class="bg-white rounded-3xl p-6 max-w-md w-full shadow-2xl border border-stone-200 relative space-y-4"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 transform translate-y-4"
+             x-transition:enter-end="opacity-100 transform translate-y-0">
+            
+            <button @click="calendarModalOpen = false" class="absolute top-4 right-4 text-stone-400 hover:text-stone-700">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="text-center pb-2">
+                <div class="w-14 h-14 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+                <h3 class="text-lg font-black text-forest-950">匯入行程至您的手機行事曆</h3>
+                <p class="text-xs text-stone-400 mt-1">方便您在旅程出發當天快速查找與接收提醒</p>
+            </div>
+
+            <!-- 活動時間地點卡片摘要 -->
+            <div class="bg-stone-50 border border-stone-200 rounded-2xl p-4 text-xs space-y-2 text-stone-700 font-medium">
+                <div class="flex gap-2">
+                    <span class="text-stone-400 shrink-0">主題:</span>
+                    <span class="font-bold text-forest-900">【竹三親子團】南橫八景全覽與小小守護者之旅</span>
+                </div>
+                <div class="flex gap-2">
+                    <span class="text-stone-400 shrink-0">集合:</span>
+                    <span class="font-bold text-rose-700">115 年 6 月 19 日 (五) 早上 06:50 (07:00 發車)</span>
+                </div>
+                <div class="flex gap-2">
+                    <span class="text-stone-400 shrink-0">地點:</span>
+                    <span>竹北市嘉德公有停車場 (興隆公園旁)</span>
+                </div>
+                <div class="flex gap-2">
+                    <span class="text-stone-400 shrink-0">提醒:</span>
+                    <span class="text-emerald-700">設定於 30 分鐘前（06:20）自動響鈴提醒搭車！</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-3.5 pt-2">
+                <!-- Google Calendar 匯入連結 -->
+                <a :href="getGoogleCalendarUrl()" 
+                   target="_blank" 
+                   class="flex items-center justify-center gap-3 py-3 px-4 bg-white hover:bg-blue-50 border-2 border-blue-100 hover:border-blue-200 text-blue-800 font-bold text-xs rounded-2xl shadow-sm transition">
+                    <i class="fa-brands fa-google text-lg text-blue-600"></i>
+                    <span>匯入 Google 雲端行事曆</span>
+                </a>
+
+                <!-- Apple / Outlook 檔案下載 -->
+                <button @click="downloadICSFile()" 
+                        class="flex items-center justify-center gap-3 py-3 px-4 bg-white hover:bg-amber-50 border-2 border-amber-100 hover:border-amber-200 text-amber-900 font-bold text-xs rounded-2xl shadow-sm transition">
+                    <i class="fa-solid fa-file-invoice text-lg text-amber-600"></i>
+                    <span>下載 Apple / Outlook 檔案 (.ics)</span>
+                </button>
+            </div>
+
+            <p class="text-[10px] text-stone-400 text-center leading-relaxed">
+                ※ 下載後請開啟檔案並點選「加入行事曆」即可。說明欄已包含本次「行動智慧指南」網址，方便在遊覽車上隨時查詢最新行程！
+            </p>
+        </div>
+    </div>
+
     <script>
         function tripApp() {
             return {
@@ -442,6 +754,7 @@
                 lightboxOpen: false,
                 lightboxSrc: '',
                 lightboxTitle: '',
+                calendarModalOpen: false,
 
                 // 手風琴資訊選單收合狀態
                 infoCollapse: {
@@ -459,11 +772,24 @@
                     { name: "長褲與長襪", desc: "防範山間草木割傷、蟲蟻叮咬", checked: false },
                     { name: "防曬遮陽帽 & 小毛巾", desc: "遮陽防中暑，擦拭汗水更清爽", checked: false },
                     { name: "亮綠色團服", desc: "D2當天統一著裝，拍照鮮豔識別佳", checked: false },
-                    { name: "森林護照與手冊", desc: "本次活動可以集章喔！", checked: false },
+                    { name: "森林護照與手冊", desc: "本次活動可以集章及連線九宮格喔！", checked: false },
                     { name: "個人必備藥品與防蚊液", desc: "蚊蟲叮咬與暈車防暈等自備藥品", checked: false },
                     { name: "充足的飲水與隨身零食", desc: "放在雙肩包內，健行途中可隨時補充", checked: false },
                     { name: "個人盥洗衛生用品", desc: "旅店響應減碳不提供一次性備品", checked: false },
-                    { name: "泳裝、泳帽", desc: "D2六龜不老溫泉戶外泡湯備用", checked: false }
+                    { name: "泳裝、泳裝帽", desc: "D2六龜不老溫泉戶外泡湯備用", checked: false }
+                ],
+
+                // 互動式生態九宮格資料
+                bingoGrid: [
+                    { id: 1, title: '雲海 / 雲霧縹緲', emoji: '☁️', checked: false },
+                    { id: 2, title: '高山大橋 / 鐵橋', emoji: '🌉', checked: false },
+                    { id: 3, title: '參天古木 / 巨木', emoji: '🌲', checked: false },
+                    { id: 4, title: '陡峭碎石崖壁', emoji: '🧗', checked: false },
+                    { id: 5, title: '山澗瀑布 / 溪流', emoji: '💦', checked: false },
+                    { id: 6, title: '國家公園指示牌', emoji: '🪧', checked: false },
+                    { id: 7, title: '野生山鳥 / 鳥鳴聲', emoji: '🐦', checked: false },
+                    { id: 8, title: '南橫界碑 / 地標', emoji: '📍', checked: false },
+                    { id: 9, title: '高山奇岩怪石', emoji: '🪨', checked: false }
                 ],
 
                 init() {
@@ -514,6 +840,100 @@
 
                     update();
                     setInterval(update, 1000);
+                },
+
+                // 九宮格互動控制
+                toggleBingo(index) {
+                    this.bingoGrid[index].checked = !this.bingoGrid[index].checked;
+                },
+
+                resetBingo() {
+                    this.bingoGrid.forEach(tile => tile.checked = false);
+                },
+
+                getCheckedCount() {
+                    return this.bingoGrid.filter(t => t.checked).length;
+                },
+
+                // 計算九宮格已達成的連線數量
+                getLinesCount() {
+                    let count = 0;
+                    const g = this.bingoGrid.map(t => t.checked);
+
+                    // 檢查橫線
+                    if (g[0] && g[1] && g[2]) count++;
+                    if (g[3] && g[4] && g[5]) count++;
+                    if (g[6] && g[7] && g[8]) count++;
+
+                    // 檢查直線
+                    if (g[0] && g[3] && g[6]) count++;
+                    if (g[1] && g[4] && g[7]) count++;
+                    if (g[2] && g[5] && g[8]) count++;
+
+                    // 檢查斜角線
+                    if (g[0] && g[4] && g[8]) count++;
+                    if (g[2] && g[4] && g[6]) count++;
+
+                    return count;
+                },
+
+                // 產生 Google Calendar 行事曆連結
+                getGoogleCalendarUrl() {
+                    const title = encodeURIComponent("【竹三親子團】南橫八景全覽與小小守護者之旅");
+                    const dates = "20260619T065000/20260621T180000"; // 2026/06/19 06:50 AM to 2026/06/21 06:00 PM
+                    const location = encodeURIComponent("竹北市嘉德公有停車場 (興隆公園公廁旁)");
+                    const details = encodeURIComponent(
+                        "【荒野保護協會 · 竹三親子團 會外會】\n" +
+                        "南橫八景全覽與小小守護者挑戰！出發囉！\n\n" +
+                        "⏰ 集合時間：115 年 6 月 19 日 (五) 早上 06:50 集合，07:00 準時發車！\n" +
+                        "📍 集合地點：竹北市公24興隆公園旁「竹北市嘉德公有停車場」\n" +
+                        "🔗 本次旅程行動智慧指南：https://mocher235-byte.github.io/0619/\n\n" +
+                        "※ 本行事曆已設定 30 分鐘前(06:20)提醒！"
+                    );
+                    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
+                },
+
+                // 下載 Apple/iCal 專屬 .ics 檔案
+                downloadICSFile() {
+                    const title = "【竹三親子團】南橫八景全覽之旅";
+                    const location = "竹北市嘉德公有停車場 (興隆公園旁)";
+                    const start = "20260619T065000";
+                    const end = "20260621T180000";
+                    
+                    const description = "【荒野保護協會 · 竹三親子團 會外會】\\n" +
+                        "南橫八景全覽與小小守護者挑戰！出發囉！\\n\\n" +
+                        "⏰ 集合時間：06:50 集合，07:00 準時發車！\\n" +
+                        "📍 集合地點：竹北市嘉德公有停車場\\n" +
+                        "🔗 本次旅程行動智慧指南：https://mocher235-byte.github.io/0619/\\n\\n" +
+                        "※ 本行事曆已包含自動通知提醒！";
+
+                    // ICS 檔案標準結構
+                    const icsContent = 
+                        "BEGIN:VCALENDAR\n" +
+                        "VERSION:2.0\n" +
+                        "PRODID:-//Wilderness Junior Club//NONSGML Event//EN\n" +
+                        "BEGIN:VEVENT\n" +
+                        `SUMMARY:${title}\n` +
+                        `DTSTART;TZID=Asia/Taipei:${start}\n` +
+                        `DTEND;TZID=Asia/Taipei:${end}\n` +
+                        `LOCATION:${location}\n` +
+                        `DESCRIPTION:${description}\n` +
+                        "BEGIN:VALARM\n" +
+                        "TRIGGER:-PT30M\n" + // 出發前 30 分鐘通知
+                        "ACTION:DISPLAY\n" +
+                        "DESCRIPTION:【竹三親子團】準備出發！請於 06:50 前抵達嘉德停車場集合喔！\n" +
+                        "END:VALARM\n" +
+                        "END:VEVENT\n" +
+                        "END:VCALENDAR";
+
+                    // 建立下載點
+                    const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+                    const link = document.createElement("a");
+                    link.href = URL.createObjectURL(blob);
+                    link.download = "Wilderness_Trip_0619.ics";
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
                 }
             };
         }

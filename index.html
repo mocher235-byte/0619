@@ -139,213 +139,9 @@
             </button>
         </section>
 
-        <!-- 特別活動：玉山公園小小守護者九宮格 -->
-        <section id="special-event" class="bg-gradient-to-br from-amber-50 to-orange-50/50 rounded-3xl p-6 shadow-md border-2 border-amber-200 relative overflow-hidden">
-            <!-- 裝飾徽章背景 -->
-            <div class="absolute top-0 right-0 opacity-5 pointer-events-none -mr-10 -mt-10">
-                <i class="fa-solid fa-award text-[16rem] text-amber-800"></i>
-            </div>
-
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-4 border-b border-amber-200">
-                <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center shadow-md shadow-amber-500/20">
-                        <i class="fa-solid fa-star-half-stroke text-2xl"></i>
-                    </div>
-                    <div>
-                        <span class="text-[10px] bg-amber-200 text-amber-900 px-2 py-0.5 rounded-full font-extrabold tracking-wider uppercase">特別企劃 SPECIAL EVENT</span>
-                        <h2 class="text-xl md:text-2xl font-black text-amber-950">玉山公園小小守護者挑戰</h2>
-                    </div>
-                </div>
-
-                <!-- 手冊下載按鈕 -->
-                <a href="https://drive.google.com/file/d/1Ybw1C96rZ1KtaoolibYAS_QElqJ9llfC/view?usp=sharing" 
-                   target="_blank" 
-                   class="inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white text-xs font-extrabold rounded-xl shadow-lg shadow-amber-700/20 hover:scale-102 transition duration-300">
-                    <i class="fa-solid fa-file-pdf text-base"></i>
-                    <span>點我下載小小守護者手冊 (請自行列印)</span>
-                </a>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                <!-- 活動故事與規則說明 -->
-                <div class="md:col-span-5 space-y-4">
-                    <div class="bg-white/80 backdrop-blur-sm p-4 rounded-2xl border border-amber-100 shadow-sm">
-                        <h3 class="font-bold text-sm text-amber-900 mb-1.5 flex items-center gap-1.5">
-                            <i class="fa-solid fa-feather-pointed"></i> 傳承與留心美景的故事
-                        </h3>
-                        <p class="text-xs text-stone-700 leading-relaxed">
-                            N年前我們曾去過南橫，獲得了一份<strong>「玉山公園小小守護者」</strong>手冊。這份資料內容非常優質，值得大蜂和大蟻們在第二天行經南橫公路時，帶著孩子們放慢腳步，留心觀察周遭得天獨厚的絕美自然景觀與生態資源！
-                        </p>
-                    </div>
-
-                    <div class="bg-amber-900 text-amber-50 p-4 rounded-2xl shadow-inner space-y-2.5 text-xs">
-                        <h3 class="font-black text-sm text-amber-300 flex items-center gap-1.5">
-                            <i class="fa-solid fa-circle-exclamation"></i> 競賽與獎勵規則說明
-                        </h3>
-                        <ul class="space-y-2">
-                            <li class="flex items-start gap-1.5">
-                                <span class="bg-amber-800 text-amber-200 w-5 h-5 rounded-full flex items-center justify-center shrink-0 font-bold text-[10px]">1</span>
-                                <span><strong>小蟻</strong>完成 <strong>2條連線</strong>；<strong>小蜂</strong>則需完成 <strong>3條連線</strong>。</span>
-                            </li>
-                            <li class="flex items-start gap-1.5">
-                                <span class="bg-amber-800 text-amber-200 w-5 h-5 rounded-full flex items-center justify-center shrink-0 font-bold text-[10px]">2</span>
-                                <span>在 <strong>6/20 (六) 當天 18:00 前</strong>，將完成的實體九宮格拍照上傳至【竹三親子團群組】。</span>
-                            </li>
-                            <li class="flex items-start gap-1.5">
-                                <span class="bg-amber-800 text-amber-200 w-5 h-5 rounded-full flex items-center justify-center shrink-0 font-bold text-[10px]">3</span>
-                                <span>最快上傳且完全正確的<strong>前三名</strong>小蜂或小蟻，將獲得精心準備的<strong>神秘特別小禮物</strong>喔！🎁</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- 互動式九宮格模擬觀察板 -->
-                <div class="md:col-span-7 bg-white p-5 rounded-2xl shadow-sm border border-amber-100 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-center mb-3">
-                            <span class="text-xs font-bold text-amber-950 flex items-center gap-1.5">
-                                <i class="fa-solid fa-wand-magic-sparkles text-amber-500"></i> 生態九宮格 · 即時觀測模擬器
-                            </span>
-                            <button @click="resetBingo()" class="text-[10px] text-amber-700 hover:text-amber-900 font-bold flex items-center gap-1 transition">
-                                <i class="fa-solid fa-rotate-right"></i> 重設
-                            </button>
-                        </div>
-                        <p class="text-[10px] text-stone-400 mb-4">
-                            出發當天在南橫公路上看到以下景觀嗎？點選卡片模擬觀測狀況，系統會即時幫你計算連線喔！
-                        </p>
-                    </div>
-
-                    <!-- 3x3 網格 -->
-                    <div class="grid grid-cols-3 gap-2 mb-4">
-                        <template x-for="(tile, index) in bingoGrid" :key="tile.id">
-                            <button @click="toggleBingo(index)" 
-                                    :class="tile.checked 
-                                            ? 'bg-amber-600 text-white border-amber-700 shadow-md transform scale-98 font-bold' 
-                                            : 'bg-stone-50 hover:bg-stone-100 text-stone-800 border-stone-200'"
-                                    class="aspect-square flex flex-col items-center justify-center text-center p-2 rounded-xl border transition duration-150 select-none focus:outline-none relative">
-                                <span class="text-xl md:text-2xl mb-1" x-text="tile.emoji"></span>
-                                <span class="text-[9px] md:text-xs leading-tight tracking-tight" x-text="tile.title"></span>
-                                <!-- 打勾角標 -->
-                                <div x-show="tile.checked" class="absolute top-1 right-1 text-[8px] bg-amber-800 text-white px-1 py-0.2 rounded">
-                                    <i class="fa-solid fa-check"></i>
-                                </div>
-                            </button>
-                        </template>
-                    </div>
-
-                    <!-- 即時數據反饋 -->
-                    <div class="bg-amber-50 border border-amber-200/60 rounded-xl p-3 flex items-center justify-between">
-                        <div class="text-xs">
-                            <span class="text-stone-500 font-medium">目前已觀測：</span>
-                            <span class="font-bold text-amber-900 text-sm" x-text="getCheckedCount()">0</span>
-                            <span class="text-stone-300 mx-1.5">|</span>
-                            <span class="text-stone-500 font-medium">已達成連線：</span>
-                            <span class="font-extrabold text-amber-600 text-base" x-text="`${getLinesCount()} 條線`">0 條線</span>
-                        </div>
-                        
-                        <!-- 資格徽章 -->
-                        <div class="flex gap-1.5">
-                            <span :class="getLinesCount() >= 2 ? 'bg-amber-600 text-white' : 'bg-stone-200 text-stone-400'" 
-                                  class="text-[9px] px-2 py-1 rounded font-bold transition duration-300">
-                                🐜 小蟻達標 (2條)
-                            </span>
-                            <span :class="getLinesCount() >= 3 ? 'bg-rose-600 text-white shadow-sm' : 'bg-stone-200 text-stone-400'" 
-                                  class="text-[9px] px-2 py-1 rounded font-bold transition duration-300">
-                                🐝 小蜂達標 (3條)
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 推薦出發影片 (使用高品質、防崩潰的真實截圖預覽圖) -->
-        <section id="video-showcase" class="bg-white rounded-3xl p-6 shadow-md border border-forest-100 space-y-4">
-            <div class="flex items-center gap-3 pb-3 border-b border-stone-100">
-                <div class="w-9 h-9 rounded-full bg-rose-600 text-white flex items-center justify-center">
-                    <i class="fa-solid fa-clapperboard text-sm"></i>
-                </div>
-                <div>
-                    <h2 class="text-lg md:text-xl font-bold text-forest-900">精選行前推薦影片</h2>
-                    <p class="text-xs text-stone-400">大自然的震撼視角與南橫公路風光，點選預覽圖即可在新視窗順暢觀看！</p>
-                </div>
-            </div>
-
-            <!-- 影片排版 Grid：雙欄等高併排 -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                
-                <!-- 影片一：看見南橫美景 -->
-                <div class="bg-stone-50 rounded-2xl p-4 border border-stone-200/80 flex flex-col justify-between group">
-                    <div class="mb-3">
-                        <div class="flex justify-between items-start mb-1">
-                            <span class="text-xs font-bold text-stone-800 flex items-center gap-1.5">
-                                <i class="fa-solid fa-film text-rose-600"></i> 看見南橫美景
-                            </span>
-                            <span class="text-[9px] bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-bold">精選空拍紀錄</span>
-                        </div>
-                        <p class="text-[11px] text-stone-400 font-medium">南橫八景全方位高山景緻，令人神往的世外桃源紀錄</p>
-                    </div>
-
-                    <!-- 精簡化高度的圖片預覽區 -->
-                    <a href="https://youtu.be/7KnnKv2FeTc?si=s59KixbEyGPs0jxj" target="_blank" class="relative block w-full aspect-video rounded-xl overflow-hidden shadow-sm bg-black group max-h-[180px]">
-                        <img src="https://i.postimg.cc/d00FZYbL/ying-mu-xie-qu-hua-mian-2026-06-17-220801.png" 
-                             alt="看見南橫美景" 
-                             class="w-full h-full object-cover group-hover:scale-102 transition duration-500"
-                             onerror="this.src='https://placehold.co/400x225/e1ede6/27533b?text=Play+Video'">
-                        
-                        <!-- 仿播放器覆蓋按鈕與遮罩 -->
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-300 flex items-center justify-center">
-                            <div class="w-12 h-12 rounded-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center shadow-lg transition transform group-hover:scale-110">
-                                <i class="fa-solid fa-play text-lg ml-0.5"></i>
-                            </div>
-                        </div>
-
-                        <!-- 點擊提示角標 -->
-                        <span class="absolute bottom-2 right-2 bg-black/70 backdrop-blur-sm text-white text-[9px] px-2 py-1 rounded font-bold">
-                            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>外部播放
-                        </span>
-                    </a>
-                </div>
-
-                <!-- 影片二：南橫特別 Short 短片 -->
-                <div class="bg-stone-50 rounded-2xl p-4 border border-stone-200/80 flex flex-col justify-between group">
-                    <div class="mb-3">
-                        <div class="flex justify-between items-start mb-1">
-                            <span class="text-xs font-bold text-stone-800 flex items-center gap-1.5">
-                                <i class="fa-solid fa-mobile-screen-button text-blue-600"></i> 南橫特別 Short 短片
-                            </span>
-                            <span class="text-[9px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-bold">直式快報</span>
-                        </div>
-                        <p class="text-[11px] text-stone-400 font-medium">超吸睛的南橫精彩瞬間，快速感受最美公路魅力！</p>
-                    </div>
-
-                    <!-- 精簡化高度的圖片預覽區 -->
-                    <a href="https://youtube.com/shorts/P334mnw5420?si=aGt9JX3_W3nBrcvU" target="_blank" class="relative block w-full aspect-video rounded-xl overflow-hidden shadow-sm bg-black group max-h-[180px]">
-                        <img src="https://i.postimg.cc/5ttJQVh0/ying-mu-xie-qu-hua-mian-2026-06-17-220842.png" 
-                             alt="南橫特別 Short 短片" 
-                             class="w-full h-full object-cover group-hover:scale-102 transition duration-500"
-                             onerror="this.src='https://placehold.co/400x225/e1ede6/27533b?text=Play+Shorts'">
-                        
-                        <!-- 仿播放器覆蓋按鈕與遮罩 -->
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-300 flex items-center justify-center">
-                            <div class="w-12 h-12 rounded-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center shadow-lg transition transform group-hover:scale-110">
-                                <i class="fa-solid fa-play text-lg ml-0.5"></i>
-                            </div>
-                        </div>
-
-                        <!-- 點擊提示角標 -->
-                        <span class="absolute bottom-2 right-2 bg-black/70 backdrop-blur-sm text-white text-[9px] px-2 py-1 rounded font-bold">
-                            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>外部播放
-                        </span>
-                    </a>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- 核心區塊：原始分組與車次房號分配圖檔對照 -->
-        <section class="bg-white rounded-3xl p-6 shadow-md border border-forest-100 relative">
-            <div class="flex items-center justify-between mb-4 pb-3 border-b border-stone-100">
+        <!-- 核心區塊：原始分組與車次房號分配圖檔對照 (已移至最頂部方便隨時查詢) -->
+        <section id="official-charts" class="bg-white rounded-3xl p-6 shadow-md border border-forest-100 relative">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-3 border-b border-stone-100">
                 <div class="flex items-center gap-2.5">
                     <div class="w-9 h-9 rounded-full bg-forest-600 text-white flex items-center justify-center">
                         <i class="fa-solid fa-images text-sm"></i>
@@ -355,12 +151,14 @@
                         <p class="text-xs text-stone-400">大巴、接駁、房號與桌次之大會官方圖檔，點選可放大檢視</p>
                     </div>
                 </div>
+                
+                
             </div>
 
             <!-- 燈箱使用提示 -->
             <div class="bg-stone-50 border border-stone-200/60 rounded-xl p-3 mb-5 text-xs text-stone-500 flex items-center gap-2">
                 <i class="fa-solid fa-circle-info text-forest-600 shrink-0"></i>
-                <span>手機版提示：點選下方任何圖卡即可開啟「全螢幕高解析燈箱」，方便雙指捏合、放大閱讀細緻的名單文字！</span>
+                <span>手機版提示：點選下方任何圖卡或上方「總表合圖」按鈕，即可開啟「全螢幕高解析燈箱」進行雙指捏合放大！</span>
             </div>
 
             <!-- 原始圖檔 Grid 排版 -->
@@ -467,6 +265,233 @@
             </div>
         </section>
 
+        <!-- 特別活動：玉山公園小小守護者九宮格 -->
+        <section id="special-event" class="bg-gradient-to-br from-amber-50 to-orange-50/50 rounded-3xl p-6 shadow-md border-2 border-amber-200 relative overflow-hidden">
+            <!-- 裝飾徽章背景 -->
+            <div class="absolute top-0 right-0 opacity-5 pointer-events-none -mr-10 -mt-10">
+                <i class="fa-solid fa-award text-[16rem] text-amber-800"></i>
+            </div>
+
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-4 border-b border-amber-200">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center shadow-md shadow-amber-500/20">
+                        <i class="fa-solid fa-star-half-stroke text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] bg-amber-200 text-amber-900 px-2 py-0.5 rounded-full font-extrabold tracking-wider uppercase">特別企劃 SPECIAL EVENT</span>
+                        <h2 class="text-xl md:text-2xl font-black text-amber-950">玉山公園小小守護者挑戰</h2>
+                    </div>
+                </div>
+
+                <!-- 手冊下載與九宮格對照按鈕 (使用 image_51aa4b.png 按鈕圖片) -->
+                <div class="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+                    <a href="https://drive.google.com/file/d/1Ybw1C96rZ1KtaoolibYAS_QElqJ9llfC/view?usp=sharing" 
+                       target="_blank" 
+                       class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white text-xs font-extrabold rounded-xl shadow-md hover:scale-102 transition duration-300 h-10">
+                        <i class="fa-solid fa-file-pdf text-base"></i>
+                        <span>下載手冊紙本 (請自行列印)</span>
+                    </a>
+                  
+                </div>
+            </div>
+
+            <!-- ⚠️ 得獎關鍵警告說明：最醒目的位置 -->
+            <div class="bg-red-50 border-l-8 border-red-500 rounded-2xl p-4 mb-6 text-xs text-red-950 shadow-md">
+                <div class="flex items-start gap-3">
+                    <div class="p-1 bg-red-100 rounded-full text-red-600 animate-bounce">
+                        <i class="fa-solid fa-circle-exclamation text-lg"></i>
+                    </div>
+                    <div>
+                        <strong class="text-red-700 text-sm md:text-base block mb-1 font-black">🔥 重要宣告：此得獎規則切勿搞混！</strong>
+                        <p class="leading-relaxed font-bold">
+                            本頁面下方的<span class="underline decoration-red-500 decoration-2">【生態九宮格 · 即時觀測模擬器】僅供行前或路上趣味互動模擬</span>，以測試連線成果，<span class="text-red-600 bg-red-100 px-1 rounded font-black">並非得獎的依據</span>。
+                        </p>
+                        <p class="mt-1.5 leading-relaxed font-bold">
+                            唯有將完成的<span class="text-white bg-red-600 px-1.5 py-0.5 rounded font-black">「實體紙本九宮格」拍照上傳</span>至<span class="underline decoration-red-500 decoration-2 font-black">(竹三-南橫八景全覽) LINE 群組</span>，前三名夥伴才符合獲得「神秘小禮物」的得獎資格！
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <!-- 活動故事與規則說明 -->
+                <div class="md:col-span-5 space-y-4">
+                    <div class="bg-white/80 backdrop-blur-sm p-4 rounded-2xl border border-amber-100 shadow-sm">
+                        <h3 class="font-bold text-sm text-amber-900 mb-1.5 flex items-center gap-1.5">
+                            <i class="fa-solid fa-feather-pointed"></i> 傳承與留心美景的故事
+                        </h3>
+                        <p class="text-xs text-stone-700 leading-relaxed">
+                            N年前我們曾去過南橫，獲得了一份<strong>「玉山公園小小守護者」</strong>手冊。這份資料內容非常優質，值得大蜂和大蟻們在第二天行經南橫公路時，帶著孩子們放慢腳步，留心觀察周遭得天獨厚的絕美自然景觀與生態資源！
+                        </p>
+                        <p class="text-[10px] text-stone-400 mt-2">
+                            ※ 手冊請自行 copy 準備哦！
+                        </p>
+                    </div>
+
+                    <div class="bg-amber-900 text-amber-50 p-4 rounded-2xl shadow-inner space-y-2.5 text-xs">
+                        <h3 class="font-black text-sm text-amber-300 flex items-center gap-1.5">
+                            <i class="fa-solid fa-medal"></i> 競賽與獎勵規則說明
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-1.5">
+                                <span class="bg-amber-800 text-amber-200 w-5 h-5 rounded-full flex items-center justify-center shrink-0 font-bold text-[10px]">1</span>
+                                <span><strong>小蟻</strong>完成 <strong>2 條連線</strong>；<strong>小蜂</strong>則需完成 <strong>3 條連線</strong>。</span>
+                            </li>
+                            <li class="flex items-start gap-1.5">
+                                <span class="bg-amber-800 text-amber-200 w-5 h-5 rounded-full flex items-center justify-center shrink-0 font-bold text-[10px]">2</span>
+                                <span>請在 <strong>6/20 (六) 當天 18:00 前</strong>將完成的實體九宮格拍照上傳至<strong>(竹三-南橫八景全覽) LINE 群組</strong>。</span>
+                            </li>
+                            <li class="flex items-start gap-1.5">
+                                <span class="bg-amber-800 text-amber-200 w-5 h-5 rounded-full flex items-center justify-center shrink-0 font-bold text-[10px]">3</span>
+                                <span>最快上傳且完全正確之<strong>前三名</strong>小蜂或小蟻，可獲得特別準備的<strong>神秘小禮物</strong>！🎁</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="md:col-span-7 bg-white p-5 rounded-2xl shadow-sm border border-amber-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-xs font-bold text-amber-950 flex items-center gap-1.5">
+                                <i class="fa-solid fa-wand-magic-sparkles text-amber-500 animate-pulse"></i> 生態九宮格 · 即時觀測模擬器 (非得獎依據)
+                            </span>
+                            <button @click="resetBingo()" class="text-[10px] text-amber-700 hover:text-amber-900 font-bold flex items-center gap-1 transition">
+                                <i class="fa-solid fa-rotate-right"></i> 重設
+                            </button>
+                        </div>
+                        <p class="text-[10px] text-amber-600 font-semibold mb-3">
+                            📢 注意：此處僅供行前模擬或路途好玩測試，得獎請上傳實體紙本拍照喔！
+                        </p>
+                    </div>
+
+                    <!-- 3x3 網格 (仿照 image_520888.png 設計) -->
+                    <div class="grid grid-cols-3 gap-2.5 mb-4">
+                        <template x-for="(tile, index) in bingoGrid" :key="tile.id">
+                            <button @click="toggleBingo(index)" 
+                                    :class="tile.checked 
+                                            ? 'bg-amber-600 text-white border-amber-700 shadow-md transform scale-98 font-bold' 
+                                            : 'bg-stone-50 hover:bg-stone-100 text-stone-800 border-stone-200'"
+                                    class="aspect-square flex flex-col items-center justify-center text-center p-2 rounded-xl border transition duration-150 select-none focus:outline-none relative">
+                                <span class="text-2xl md:text-3xl mb-1.5" x-text="tile.emoji"></span>
+                                <span class="text-[9px] md:text-xs leading-tight tracking-tight font-medium" x-text="tile.title"></span>
+                                <!-- 打勾角標 -->
+                                <div x-show="tile.checked" class="absolute top-1 right-1 text-[8px] bg-amber-800 text-white px-1 py-0.2 rounded">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                            </button>
+                        </template>
+                    </div>
+
+                    <!-- 即時數據反饋 -->
+                    <div class="bg-amber-50 border border-amber-200/60 rounded-xl p-3 flex flex-col sm:flex-row gap-2 sm:items-center justify-between">
+                        <div class="text-xs">
+                            <span class="text-stone-500 font-medium">模擬觀測：</span>
+                            <span class="font-bold text-amber-900 text-sm" x-text="getCheckedCount()">0</span>
+                            <span class="text-stone-300 mx-1.5">|</span>
+                            <span class="text-stone-500 font-medium">連線數：</span>
+                            <span class="font-extrabold text-amber-600 text-base" x-text="`${getLinesCount()} 條線`">0 條線</span>
+                        </div>
+                        
+                        <!-- 資格徽章 -->
+                        <div class="flex gap-1.5">
+                            <span :class="getLinesCount() >= 2 ? 'bg-amber-600 text-white' : 'bg-stone-200 text-stone-400'" 
+                                  class="text-[9px] px-2 py-1 rounded font-bold transition duration-300">
+                                🐜 小蟻達標 (2條)
+                            </span>
+                            <span :class="getLinesCount() >= 3 ? 'bg-rose-600 text-white shadow-sm' : 'bg-stone-200 text-stone-400'" 
+                                  class="text-[9px] px-2 py-1 rounded font-bold transition duration-300">
+                                🐝 小蜂達標 (3條)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 推薦出發影片 -->
+        <section id="video-showcase" class="bg-white rounded-3xl p-6 shadow-md border border-forest-100 space-y-4">
+            <div class="flex items-center gap-3 pb-3 border-b border-stone-100">
+                <div class="w-9 h-9 rounded-full bg-rose-600 text-white flex items-center justify-center">
+                    <i class="fa-solid fa-clapperboard text-sm"></i>
+                </div>
+                <div>
+                    <h2 class="text-lg md:text-xl font-bold text-forest-900">精選行前推薦影片</h2>
+                    <p class="text-xs text-stone-400">大自然的震撼視角與南橫公路風光，點選預覽圖即可在新視窗順暢觀看！</p>
+                </div>
+            </div>
+
+            <!-- 影片排版 Grid：雙欄等高併排 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                
+                <!-- 影片一：看見南橫美景 -->
+                <div class="bg-stone-50 rounded-2xl p-4 border border-stone-200/80 flex flex-col justify-between group">
+                    <div class="mb-3">
+                        <div class="flex justify-between items-start mb-1">
+                            <span class="text-xs font-bold text-stone-800 flex items-center gap-1.5">
+                                <i class="fa-solid fa-film text-rose-600"></i> 看見南橫美景
+                            </span>
+                            <span class="text-[9px] bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-bold">精選空拍紀錄</span>
+                        </div>
+                        <p class="text-[11px] text-stone-400 font-medium">南橫八景全方位高山景緻，令人神往的世外桃源紀錄</p>
+                    </div>
+
+                    <!-- 精簡化高度的圖片預覽區 -->
+                    <a href="https://youtu.be/7KnnKv2FeTc?si=s59KixbEyGPs0jxj" target="_blank" class="relative block w-full aspect-video rounded-xl overflow-hidden shadow-sm bg-black group max-h-[180px]">
+                        <img src="https://i.postimg.cc/d00FZYbL/ying-mu-xie-qu-hua-mian-2026-06-17-220801.png" 
+                             alt="看見南橫美景" 
+                             class="w-full h-full object-cover group-hover:scale-102 transition duration-500"
+                             onerror="this.src='https://placehold.co/400x225/e1ede6/27533b?text=Play+Video'">
+                        
+                        <!-- 仿播放器覆蓋按鈕與遮罩 -->
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-300 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center shadow-lg transition transform group-hover:scale-110">
+                                <i class="fa-solid fa-play text-lg ml-0.5"></i>
+                            </div>
+                        </div>
+
+                        <!-- 點擊提示角標 -->
+                        <span class="absolute bottom-2 right-2 bg-black/70 backdrop-blur-sm text-white text-[9px] px-2 py-1 rounded font-bold">
+                            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>外部播放
+                        </span>
+                    </a>
+                </div>
+
+                <!-- 影片二：南橫特別 Short 短片 -->
+                <div class="bg-stone-50 rounded-2xl p-4 border border-stone-200/80 flex flex-col justify-between group">
+                    <div class="mb-3">
+                        <div class="flex justify-between items-start mb-1">
+                            <span class="text-xs font-bold text-stone-800 flex items-center gap-1.5">
+                                <i class="fa-solid fa-mobile-screen-button text-blue-600"></i> 南橫特別 Short 短片
+                            </span>
+                            <span class="text-[9px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-bold">直式快報</span>
+                        </div>
+                        <p class="text-[11px] text-stone-400 font-medium">超吸睛的南橫精彩瞬間，快速感受最美公路魅力！</p>
+                    </div>
+
+                    <!-- 精簡化高度的圖片預覽區 -->
+                    <a href="https://youtube.com/shorts/P334mnw5420?si=aGt9JX3_W3nBrcvU" target="_blank" class="relative block w-full aspect-video rounded-xl overflow-hidden shadow-sm bg-black group max-h-[180px]">
+                        <img src="https://i.postimg.cc/5ttJQVh0/ying-mu-xie-qu-hua-mian-2026-06-17-220842.png" 
+                             alt="南橫特別 Short 短片" 
+                             class="w-full h-full object-cover group-hover:scale-102 transition duration-500"
+                             onerror="this.src='https://placehold.co/400x225/e1ede6/27533b?text=Play+Shorts'">
+                        
+                        <!-- 仿播放器覆蓋按鈕與遮罩 -->
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-300 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center shadow-lg transition transform group-hover:scale-110">
+                                <i class="fa-solid fa-play text-lg ml-0.5"></i>
+                            </div>
+                        </div>
+
+                        <!-- 點擊提示角標 -->
+                        <span class="absolute bottom-2 right-2 bg-black/70 backdrop-blur-sm text-white text-[9px] px-2 py-1 rounded font-bold">
+                            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>外部播放
+                        </span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
         <!-- 詳細出遊通知與公約 -->
         <section id="info-section" class="bg-white rounded-3xl p-6 shadow-md border border-forest-100 space-y-6">
             <h2 class="text-xl font-bold tracking-tight text-forest-900 border-b border-stone-100 pb-3 flex items-center gap-2">
@@ -524,7 +549,7 @@
                             </ul>
                         </div>
 
-                        <!-- 乙車特別協調說明牌卡 (新增) -->
+                        <!-- 乙車特別協調說明牌卡 -->
                         <div class="bg-amber-50/70 border-l-4 border-amber-500 p-4 rounded-r-2xl space-y-2 shadow-inner">
                             <span class="font-black text-amber-900 flex items-center gap-1.5 text-xs">
                                 <i class="fa-solid fa-triangle-exclamation text-amber-600 text-sm animate-bounce"></i> 🦘 袋鼠乙車座位特別體恤宣導 😆
@@ -611,7 +636,7 @@
                             </div>
                             <!-- 第二天 -->
                             <div class="bg-forest-50/20 border border-forest-100 p-3.5 rounded-2xl">
-                                <span class="font-bold text-forest-800 text-sm block mb-2 border-b border-forest-200/30 pb-1">📅 第二天 (6/20 六)</span>
+                                <span class="font-bold text-forest-800 text-sm block mb-2 border-b border-forest-200/30 pb-1">📅 第二天 (6/20 土)</span>
                                 <ul class="space-y-1 text-[11px] text-stone-700">
                                     <li>🌅 <span class="font-semibold text-stone-500">早餐：</span>活力精緻餐盒</li>
                                     <li>☀️ <span class="font-semibold text-stone-500">午餐：</span>便攜麵包手作餐盒</li>
@@ -664,16 +689,20 @@
             <img :src="lightboxSrc" 
                  :alt="lightboxTitle" 
                  class="max-w-full max-h-[80vh] md:max-h-[85vh] object-contain rounded-lg shadow-2xl transition-transform duration-300 pointer-events-auto"
-                 @click.stop>
+                 @click.stop
+                 onerror="this.src='https://placehold.co/600x400/387a56/ffffff?text=Image+Unavailable'">
         </div>
 
         <!-- 燈箱底部提示與新視窗開啟按鈕 -->
         <div class="text-center py-4 z-10 flex flex-col items-center gap-2">
-            <a :href="lightboxSrc" 
-               target="_blank" 
-               class="px-5 py-2 bg-forest-600 hover:bg-forest-700 text-white text-xs font-bold rounded-xl transition flex items-center gap-1.5 shadow-md">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> 在新分頁開啟原始大圖 (可長按儲存)
-            </a>
+            <!-- 偵測是否為本地端參考圖檔，若是則隱藏外部新分頁開啟按鈕以避免無效連結 -->
+            <template x-if="lightboxSrc !== 'image_520888.png' && lightboxSrc !== 'image_5204a8.jpg'">
+                <a :href="lightboxSrc" 
+                   target="_blank" 
+                   class="px-5 py-2 bg-forest-600 hover:bg-forest-700 text-white text-xs font-bold rounded-xl transition flex items-center gap-1.5 shadow-md">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> 在新分頁開啟原始大圖 (可長按儲存)
+                </a>
+            </template>
             <button @click="closeLightbox()" class="text-xs text-stone-400 hover:text-white underline transition">
                 返回指南首頁
             </button>
@@ -773,18 +802,18 @@
                     { name: "防曬遮陽帽 & 小毛巾", desc: "遮陽防中暑，擦拭汗水更清爽", checked: false },
                     { name: "亮綠色團服", desc: "D2當天統一著裝，拍照鮮豔識別佳", checked: false },
                     { name: "森林護照與手冊", desc: "本次活動可以集章及連線九宮格喔！", checked: false },
-                    { name: "個人必備藥品與防蚊液", desc: "蚊蟲叮咬與暈車防暈等自備藥品", checked: false },
+                    { name: "個人必備藥品與防蚊液", desc: "防蚊與防暈車等自備隨身藥品", checked: false },
                     { name: "充足的飲水與隨身零食", desc: "放在雙肩包內，健行途中可隨時補充", checked: false },
                     { name: "個人盥洗衛生用品", desc: "旅店響應減碳不提供一次性備品", checked: false },
                     { name: "泳裝、泳裝帽", desc: "D2六龜不老溫泉戶外泡湯備用", checked: false }
                 ],
 
-                // 互動式生態九宮格資料
+                // 互動式生態九宮格資料 (參照 image_520888.png 配置)
                 bingoGrid: [
                     { id: 1, title: '雲海 / 雲霧縹緲', emoji: '☁️', checked: false },
                     { id: 2, title: '高山大橋 / 鐵橋', emoji: '🌉', checked: false },
                     { id: 3, title: '參天古木 / 巨木', emoji: '🌲', checked: false },
-                    { id: 4, title: '陡峭碎石崖壁', emoji: '🧗', checked: false },
+                    { id: 4, title: '陸峭碎石崖壁', emoji: '🧗', checked: false },
                     { id: 5, title: '山澗瀑布 / 溪流', emoji: '💦', checked: false },
                     { id: 6, title: '國家公園指示牌', emoji: '🪧', checked: false },
                     { id: 7, title: '野生山鳥 / 鳥鳴聲', emoji: '🐦', checked: false },
@@ -887,7 +916,7 @@
                         "南橫八景全覽與小小守護者挑戰！出發囉！\n\n" +
                         "⏰ 集合時間：115 年 6 月 19 日 (五) 早上 06:50 集合，07:00 準時發車！\n" +
                         "📍 集合地點：竹北市公24興隆公園旁「竹北市嘉德公有停車場」\n" +
-                        "🔗 本次旅程行動智慧指南：https://mocher235-byte.github.io/0619/\n\n" +
+                        "🔗 請參閱 (竹三-南橫八景全覽) LINE 群組中的資訊！\n\n" +
                         "※ 本行事曆已設定 30 分鐘前(06:20)提醒！"
                     );
                     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
@@ -904,7 +933,7 @@
                         "南橫八景全覽與小小守護者挑戰！出發囉！\\n\\n" +
                         "⏰ 集合時間：06:50 集合，07:00 準時發車！\\n" +
                         "📍 集合地點：竹北市嘉德公有停車場\\n" +
-                        "🔗 本次旅程行動智慧指南：https://mocher235-byte.github.io/0619/\\n\\n" +
+                        "🔗 請參閱 (竹三-南橫八景全覽) LINE 群組內最新公告。\\n\\n" +
                         "※ 本行事曆已包含自動通知提醒！";
 
                     // ICS 檔案標準結構

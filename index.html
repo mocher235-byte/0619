@@ -126,7 +126,7 @@
                 <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mb-2 group-hover:scale-110 transition">
                     <i class="fa-solid fa-suitcase text-lg"></i>
                 </div>
-                <span class="text-xs font-bold text-stone-700 text-center">行行前準備與備品</span>
+                <span class="text-xs font-bold text-stone-700 text-center">行前準備與備品</span>
                 <span class="text-[10px] text-stone-400 mt-0.5">打包互動清單</span>
             </button>
         </section>
@@ -147,7 +147,7 @@
                             </span>
                         </div>
                         <p class="text-xs text-stone-400 mt-1 leading-relaxed">
-                            大巴、房號與桌次之大會官方圖檔，點選可放大檢視。
+                            大巴、接駁、房號與桌次之大會官方圖檔，點選可放大檢視。
                             <span class="text-amber-700 font-black block sm:inline sm:ml-2">
                                 <i class="fa-solid fa-triangle-exclamation"></i> 若後續有更新，以 (竹三-南橫八景全覽) LINE 群組為準！
                             </span>
@@ -162,8 +162,8 @@
                 <span>手機版提示：點選下方任何圖卡即可開啟「全螢幕高解析燈箱」進行雙指捏合放大！</span>
             </div>
 
-            <!-- 原始圖檔 Grid 排版 (優化為精美等寬三欄佈局) -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- 原始圖檔 Grid 排版 (優化為精美等寬四欄佈局) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- 甲乙大巴車次名單 -->
                 <div class="bg-stone-50 rounded-2xl p-4 border border-stone-200 hover:border-forest-300 transition duration-300 flex flex-col justify-between group">
                     <div>
@@ -181,6 +181,31 @@
                              alt="大巴車次名單" 
                              class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                              onerror="this.src='https://placehold.co/600x800/387a56/ffffff?text=Bus+Roster'">
+                        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                            <span class="bg-white/90 text-stone-800 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md">
+                                <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點選放大
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第二天 8人座接駁編制 -->
+                <div class="bg-stone-50 rounded-2xl p-4 border border-stone-200 hover:border-forest-300 transition duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold text-stone-700 flex items-center gap-1.5">
+                                <i class="fa-solid fa-van-shuttle text-amber-600"></i> 第二天 8人座接駁編制
+                            </span>
+                            <span class="text-[10px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-bold">南橫專用</span>
+                        </div>
+                        <p class="text-[11px] text-stone-400 mb-3">走訪南橫八景必備！各小車名冊與車長分配</p>
+                    </div>
+                    <div @click="openLightbox('https://i.postimg.cc/vTqJFq8Q/1211088.jpg', '第二天 8人座接駁編制')" 
+                         class="cursor-zoom-in overflow-hidden rounded-xl bg-stone-200 relative aspect-[3/4] shadow-sm">
+                        <img src="https://i.postimg.cc/vTqJFq8Q/1211088.jpg" 
+                             alt="第二天 8人座接駁編制" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                             onerror="this.src='https://placehold.co/600x800/387a56/ffffff?text=Shuttle+Roster'">
                         <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
                             <span class="bg-white/90 text-stone-800 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md">
                                 <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點選放大
@@ -268,7 +293,11 @@
                         <span>下載手冊紙本 (請自行列印)</span>
                     </a>
                     
-
+                    <!-- 九宮格對照大圖按鈕：點選觸發 image_520888.png 燈箱 -->
+                    <button @click="openLightbox('image_520888.png', '生態九宮格標準對照圖')" 
+                            class="hover:scale-102 transition duration-300 focus:outline-none flex shrink-0">
+                        <img src="image_51aa4b.png" alt="檢視九宮格對照圖" class="h-10 object-contain shadow-md rounded-xl">
+                    </button>
                 </div>
             </div>
 
@@ -385,7 +414,7 @@
             </div>
         </section>
 
-        <!-- 第二天南橫公路景點全覽導覽 (取代原影片展示區塊) -->
+        <!-- 第二天南橫公路景點全覽導覽 -->
         <section id="scenic-spots" class="bg-white rounded-3xl p-6 shadow-md border border-forest-100 space-y-4">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-stone-100">
                 <div class="flex items-center gap-3">
